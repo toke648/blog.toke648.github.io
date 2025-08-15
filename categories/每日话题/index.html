@@ -302,8 +302,8 @@
         const init = () => {
             new Valine({
                 el: '#v-comments',
-                appId: 'T8XpwvdOu85FCBOBqGDFoBr5-gzGzoHsz',
-                appKey: 'Jd2fqhSfAl8XJb2qdLMskVXy',
+                appId: '<%= process.env.LEANCLOUD_APP_ID %>',
+                appKey: '<%= process.env.LEANCLOUD_APP_KEY %>',
                 visitor: true,
                 enableQQ: false,
                 path: '/categories/%E6%AF%8F%E6%97%A5%E8%AF%9D%E9%A2%98/index.html'

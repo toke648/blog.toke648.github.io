@@ -424,8 +424,8 @@
         const init = () => {
             new Valine({
                 el: '#v-comments',
-                appId: 'T8XpwvdOu85FCBOBqGDFoBr5-gzGzoHsz',
-                appKey: 'Jd2fqhSfAl8XJb2qdLMskVXy',
+                appId: '<%= process.env.LEANCLOUD_APP_ID %>',
+                appKey: '<%= process.env.LEANCLOUD_APP_KEY %>',
                 visitor: true,
                 enableQQ: false,
                 path: '/2025/06/22/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%8A%98%E8%85%BE-%E4%B8%9D%E6%BB%91%E7%9A%84Hexo%E5%B7%A5%E4%BD%9C%E6%B5%81/'

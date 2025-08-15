@@ -371,8 +371,8 @@ python爬虫实现（觉得超级好看，但放桌面占地方，因此不如�
         const init = () => {
             new Valine({
                 el: '#v-comments',
-                appId: 'T8XpwvdOu85FCBOBqGDFoBr5-gzGzoHsz',
-                appKey: 'Jd2fqhSfAl8XJb2qdLMskVXy',
+                appId: '<%= process.env.LEANCLOUD_APP_ID %>',
+                appKey: '<%= process.env.LEANCLOUD_APP_KEY %>',
                 visitor: true,
                 enableQQ: false,
                 path: '/2025/08/08/%E5%9C%9F%E8%B1%86%E4%BD%ACba%E6%BC%AB%E7%94%BB%E5%AE%8C%E6%95%B4%E8%B5%84%E6%BA%90/'

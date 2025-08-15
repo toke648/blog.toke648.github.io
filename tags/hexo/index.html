@@ -298,8 +298,8 @@ Markdown 基础语法教程Markdown 是一种轻量级标记语言，常用于�
         const init = () => {
             new Valine({
                 el: '#v-comments',
-                appId: 'T8XpwvdOu85FCBOBqGDFoBr5-gzGzoHsz',
-                appKey: 'Jd2fqhSfAl8XJb2qdLMskVXy',
+                appId: '<%= process.env.LEANCLOUD_APP_ID %>',
+                appKey: '<%= process.env.LEANCLOUD_APP_KEY %>',
                 visitor: true,
                 enableQQ: false,
                 path: '/tags/Hexo/index.html'
@@ -386,6 +386,237 @@ Markdown 基础语法教程Markdown 是一种轻量级标记语言，常用于�
     <h4 class="widget-title"><i class="fa fa-tags"></i>标签聚合</h4>
       <div class="tag-clouds">
         <a href="/tags/2233/" style="font-size: 0.6em;">2233</a> <a href="/tags/AI/" style="font-size: 0.6em;">AI</a> <a href="/tags/Butterfly-%E4%B8%BB%E9%A2%98/" style="font-size: 0.6em;">Butterfly 主题</a> <a href="/tags/Hexo/" style="font-size: 0.6em;">Hexo</a> <a href="/tags/MCP/" style="font-size: 0.6em;">MCP</a> <a href="/tags/fl-studio/" style="font-size: 0.6em;">fl studio</a> <a href="/tags/giscus/" style="font-size: 0.6em;">giscus</a> <a href="/tags/github/" style="font-size: 0.6em;">github</a> <a href="/tags/hexo/" style="font-size: 0.8em;">hexo</a> <a href="/tags/waline/" style="font-size: 0.6em;">waline</a> <a href="/tags/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/" style="font-size: 0.6em;">个人博客</a> <a href="/tags/%E4%B9%90%E7%90%86/" style="font-size: 0.6em;">乐理</a> <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" style="font-size: 0.7em;">人工智能</a> <a href="/tags/%E5%B0%8F%E6%99%BAAI/" style="font-size: 0.6em;">小智AI</a> <a href="/tags/%E6%97%A5%E5%B8%B8/" style="font-size: 0.6em;">日常</a> <a href="/tags/%E6%97%A5%E8%AE%B0/" style="font-size: 0.6em;">日记</a> <a href="/tags/%E6%9C%9B%E8%BF%9C%E9%95%9C/" style="font-size: 0.6em;">望远镜</a> <a href="/tags/%E7%94%9F%E6%B4%BB/" style="font-size: 0.6em;">生活</a>
+      </div>
+  </aside>
+
+            
+                
+  <aside id="krw-posts" class="widget widget-kratos-posts">
+  <h4 class="widget-title"><i class="fa fa-file"></i>最新文章</h4>
+  <div class="tab-content">
+      <ul class="list-group">
+        
+        
+          
+          
+            <a class="list-group-item" href="/2025/08/08/%E4%B8%AA%E4%BA%BA%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%BF%E7%94%A8%E8%A7%82/"><i class="fa  fa-book"></i> 个人计算机使用观</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2025/08/08/%E5%9C%9F%E8%B1%86%E4%BD%ACba%E6%BC%AB%E7%94%BB%E5%AE%8C%E6%95%B4%E8%B5%84%E6%BA%90/"><i class="fa  fa-book"></i> 土豆佬ba漫画日文完整</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2025/07/29/7-29-%E8%AE%A4%E7%9F%A5%E6%8E%A2%E7%B4%A2/"><i class="fa  fa-book"></i> 7/29 认知探索</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2025/07/24/%E5%A4%A9%E6%96%87%E8%AE%B0%E5%BD%95%20%E7%89%9B%E9%A1%BF%E5%8F%8D%E5%B0%84%E5%BC%8F%E6%9C%9B%E8%BF%9C%E9%95%9C/"><i class="fa  fa-book"></i> 天文记录 | 牛顿反射式望远镜</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2025/07/15/%E4%BA%B2%E5%AD%90%E5%85%B3%E7%B3%BB%E4%B8%8E%E8%B4%A3%E4%BB%BB/"><i class="fa  fa-book"></i> 亲子关系与责任</a>
+            
+          
+        
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+      </ul>
+  </div>
+  </aside>
+
+            
+    </div>
+</section>
+        
+        </div>
+    </div>
+</div>
+<footer>
+    <div id="footer"  class="ap-lrc"  >
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3 footer-list text-center">
+                    <ul class="kratos-social-icons">
+                        <!-- Keep for compatibility -->
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <!-- New links -->
+                        
+                    </ul>
+                    <ul class="kratos-copyright">
+                        <div>
+                            <li>&copy; 2025 Tokepson blog's 版权所有.</li>
+                            <li>本站已运行<span id="span_dt">Loading...</span></li>
+                        </div>
+                        <div>
+                            <li>Theme <a href="https://github.com/Candinya/Kratos-Rebirth" target="_blank">Kratos:Rebirth</a></li>
+                            <li>Site built with&nbsp;<i class="fa fa-heart throb" style="color:#d43f57"></i>&nbsp;by tokepson.</li>
+                        </div>
+                        <div>
+                            <li>Powered by <a href="https://hexo.io" target="_blank" rel="nofollow">Hexo</a></li>
+                            <li>Hosted on <a href="https://github.io" target="_blank">Github Pages</a></li>
+                        </div>
+                        <div>
+                            
+                            
+                        </div>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="kr-tool text-center">
+            <div class="tool">
+                
+                    <div class="box search-box">
+                        <a href="/search/">
+                            <span class="fa fa-search"></span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="box theme-box" id="darkmode-switch">
+                        <span class="fa fa-adjust"></span>
+                    </div>
+                
+                
+                    <div class="box theme-box" id="snow-switch">
+                        <span class="fa fa-snowflake-o"></span>
+                    </div>
+                
+                
+            </div>
+            <div class="box gotop-box">
+                <span class="fa fa-chevron-up"></span>
+            </div>
+        </div>
+    </div>
+</footer>
+</div>
+</div>
+
+        <script defer src="/vendors/bootstrap@3.3.4/dist/js/bootstrap.min.js"></script>
+<script defer src="/vendors/nprogress@0.2.0/nprogress.js"></script>
+<script>
+    if (!window.kr) {
+        window.kr = {};
+    }
+    window.kr.notMobile = (!(navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i)));
+    window.kr.siteRoot = "/";
+</script>
+
+    <div>
+        <canvas id="snow"></canvas>
+        <script async src="/js/snow.min.js"></script>
+    </div>
+
+
+    <script async src="/js/candy.min.js"></script>
+
+
+
+    <script defer src="/vendors/aplayer@1.10.1/dist/APlayer.min.js"></script>
+    
+    <script defer src="/vendors/meting@2.0.1/dist/Meting.min.js"></script>
+    <meting-js
+        server="netease"
+        type="playlist"
+        id="3204190542"
+        order="random"
+        fixed="true"
+    >
+    </meting-js>
+
+
+
+    <script defer src="/vendors/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+<script defer src="/js/kratosr.min.js"></script>
+<script defer src="/js/pjax.min.js"></script>
+
+    <script defer src="/vendors/layui-src@2.5.5/dist/layui.all.js"></script>
+
+
+
+<!-- Extra support for third-party plguins  -->
+
+
+
+        
+        <!-- 看板娘 -->
+        <!-- waifu-tips.js 依赖 JQuery 库 -->
+        <script src="/assets/jquery.min.js?v=3.3.1"></script>
+        
+        <!-- 实现拖动效果，需引入 JQuery UI -->
+        <script src="/assets/jquery-ui.min.js"></script>
+
+        <!-- 使用 autoload.js 引入看板娘 -->
+        <script src="/assets/autoload.js?v=1.4.2"></script>
+        <script src="/assets/waifu-tips.js?v=1.4.2"></script>
+        <script src="/assets/live2d.js"></script>
+        
+        <script type="text/javascript">
+            live2d_settings['modelId'] = "3";
+            live2d_settings['modelTexturesId'] = "0";
+            live2d_settings['modelStorage'] = "true";
+            live2d_settings['modelRandMode'] = "switch";
+            live2d_settings['modelTexturesRandMode'] = "rand";
+            live2d_settings['waifuSize'] = "280x250";
+            live2d_settings['waifuEdgeSide'] = "left:1050";
+            live2d_settings['waifuEdgeTop'] = "top:150";
+            live2d_settings['waifuDraggable'] = "axis-x";
+            live2d_settings['waifuDraggableRevert'] = "true";
+            live2d_settings['l2dVersion'] = "1.4.2";
+            live2d_settings['l2dVerDate'] = "2018.11.12";
+            live2d_settings['homePageUrl'] = "";
+            live2d_settings['aboutPageUrl'] = "https://www.fghrsh.net/post/123.html";
+
+            initModel("/assets/waifu-tips.json")
+        </script>
+        
+    </body>
+</html>/" style="font-size: 0.6em;">生活</a>
       </div>
   </aside>
 
