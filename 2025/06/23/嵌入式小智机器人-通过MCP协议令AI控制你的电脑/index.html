@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="zh">
+    <head>
+  <!-- 元数据 -->
+  <meta charset="utf-8">
+  
+  
+  <title>通过MCP协议令AI控制电脑 | Tokepson blog&#39;s</title>
+  
+  <meta name="author" content="tokepson" />
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="robots" content="index,follow" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <meta name="format-detection" content="telphone=no, email=no" />
+  
+    <meta name="keywords" content="MCP, 人工智能, 小智AI" />
+  
+  <meta name="description" content="[嵌入式小智AI机器人] 通过 MCP 协议令 AI 控制你的电脑前几个月入手了最新出来的小智 AI 的 ESP32 开发版，这两天群里的大佬做的 小智 AI_MCP 一键包更新到了 27.35.6 版本，上手玩玩，顺便记录下。  碎碎念不得不说我觉得目前的小智AI除了在 逻辑思维 以及 记忆能力 、 视觉（抽象的图像理解能力） 和 任务化（推理） 方面上，已经是最接近 *智能体 *的产品了。 同">
+<meta property="og:type" content="article">
+<meta property="og:title" content="通过MCP协议令AI控制电脑">
+<meta property="og:url" content="http://gannia.top/2025/06/23/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%B0%8F%E6%99%BA%E6%9C%BA%E5%99%A8%E4%BA%BA-%E9%80%9A%E8%BF%87MCP%E5%8D%8F%E8%AE%AE%E4%BB%A4AI%E6%8E%A7%E5%88%B6%E4%BD%A0%E7%9A%84%E7%94%B5%E8%84%91/index.html">
+<meta property="og:site_name" content="Tokepson blog&#39;s">
+<meta property="og:description" content="[嵌入式小智AI机器人] 通过 MCP 协议令 AI 控制你的电脑前几个月入手了最新出来的小智 AI 的 ESP32 开发版，这两天群里的大佬做的 小智 AI_MCP 一键包更新到了 27.35.6 版本，上手玩玩，顺便记录下。  碎碎念不得不说我觉得目前的小智AI除了在 逻辑思维 以及 记忆能力 、 视觉（抽象的图像理解能力） 和 任务化（推理） 方面上，已经是最接近 *智能体 *的产品了。 同">
+<meta property="og:locale">
+<meta property="og:image" content="https://storage.guangzhengli.com/images/MCP.png">
+<meta property="article:published_time" content="2025-06-23T06:35:00.000Z">
+<meta property="article:modified_time" content="2025-06-23T16:29:36.000Z">
+<meta property="article:author" content="tokepson">
+<meta property="article:tag" content="人工智能">
+<meta property="article:tag" content="小智AI">
+<meta property="article:tag" content="MCP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://storage.guangzhengli.com/images/MCP.png">
+  
+  <!-- 站点验证相关 -->
+  
+    
+    
+    
+  
+  <!-- 样式表文件 -->
+  <link rel="stylesheet" id="kratos-css" href="/css/kratosr.min.css" media="all"></script>
+  
+    <link rel="stylesheet" id="darkmode-css" href="/css/kr-color-dark.min.css" media="(prefers-color-scheme: dark)"></script>
+    <script src="/js/kr-dark.min.js"></script>
+  
+  
+    <link rel="stylesheet" id="highlight-css" href="/css/highlight/night-eighties.min.css" media="all"></script>
+  
+  <link rel="stylesheet" id="fontawe-css" href="/vendors/font-awesome@4.7.0/css/font-awesome.min.css" media="all"></script>
+  <link rel="stylesheet" id="nprogress-css" href="/vendors/nprogress@0.2.0/nprogress.css" media="all"></script>
+  
+  
+    <link rel="stylesheet" href="/vendors/aplayer@1.10.1/dist/APlayer.min.css"></script>
+  
+  
+    <link rel="stylesheet" href="/vendors/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css"></script>
+  
+  <!-- 不得不预先加载的一些JS文件 -->
+  <script src="/vendors/jquery@3.6.0/dist/jquery.min.js"></script>
+  
+    <script src="/vendors/qrcode_js@1.0.0/qrcode.min.js"></script>
+  
+  
+  <style>
+    
+      .kratos-cover.kratos-cover-2 {
+        background-image: url('/images/banner.webp');
+      }
+    
+    
+      @media(min-width:768px) {
+        body.custom-background {
+          background-image: url('/images/bg.webp');
+        }
+      }
+    
+  </style>
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+    <body class="custom-background">
+        <div id="kratos-wrapper">
+    <div id="kratos-page">
+        <div id="kratos-header">
+            <header id="kratos-desktop-topnav" class="kratos-topnav">
+                <div class="container">
+                    <div class="nav-header">
+                        <nav id="kratos-menu-wrap">
+                            <ul id="kratos-primary-menu" class="sf-menu">
+                                
+                                    
+                                    
+                                        
+                                            <li><a href="/"><i class="fa fa-home"></i>首页</a></li>
+                                        
+                                    
+                                        
+                                            <li><a href="/about/"><i class="fa fa-user"></i>关于</a></li>
+                                        
+                                    
+                                        
+                                            <li><a href="/resources/"><i class="fa fa-folder-open"></i>资源</a></li>
+                                        
+                                    
+                                        
+                                            <li><a href="/library/"><i class="fa fa-book"></i>图书馆</a></li>
+                                        
+                                    
+                                        
+                                            <li><a href="/talk/"><i class="fa fa-comments"></i>讨论区</a></li>
+                                        
+                                    
+                                        
+                                            <li>
+                                                <a><i class="fa fa-list"></i>列表</a>
+                                                <ul class="sub-menu">
+                                                    
+                                                        
+                                                    
+                                                        
+                                                            <li><a href="/music/"><i class="fa fa-music"></i>音乐</a></li>
+                                                        
+                                                    
+                                                        
+                                                            <li><a href="/drawing/"><i class="fa fa-paint-brush"></i>绘画</a></li>
+                                                        
+                                                    
+                                                        
+                                                            <li><a href="/photography/"><i class="fa fa-camera"></i>摄影</a></li>
+                                                        
+                                                    
+                                                        
+                                                            <li><a href="/movies/"><i class="fa fa-film"></i>电影</a></li>
+                                                        
+                                                    
+                                                </ul>
+                                            </li>
+                                        
+                                    
+                                        
+                                            <li><a href="/links/"><i class="fa fa-link"></i>友联</a></li>
+                                        
+                                    
+                                        
+                                            <li><a href="/share/"><i class="fa fa-share-alt"></i>分享</a></li>
+                                        
+                                    
+                                        
+                                            <li>
+                                                <a><i class="fa fa-external-link-alt"></i>外部链接</a>
+                                                <ul class="sub-menu">
+                                                    
+                                                        
+                                                    
+                                                        
+                                                            <li><a target="_blank" rel="noopener" href="https://candinya.com"><i class="fa fa-blog"></i>作者博客</a></li>
+                                                        
+                                                    
+                                                        
+                                                            <li><a target="_blank" rel="noopener" href="https://github.com/Candinya/Kratos-Rebirth"><i class="fa fa-code-branch"></i>项目链接</a></li>
+                                                        
+                                                    
+                                                </ul>
+                                            </li>
+                                        
+                                    
+                                
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </header>
+            <header id="kratos-mobile-topnav" class="kratos-topnav">
+                <div class="container">
+                    <div class="color-logo"><a href="/">Tokepson blog&#39;s</a></div>
+                    <div class="nav-toggle">
+                        <a class="kratos-nav-toggle js-kratos-nav-toggle">
+                            <i></i>
+                        </a>
+                    </div>
+                </div>
+            </header>
+        </div>
+        <div class="kratos-start kratos-hero-2">
+            <!-- <div class="kratos-overlay"></div> -->
+            <div class="kratos-cover kratos-cover-2 text-center">
+                <div class="desc desc2 animate-box">
+                    <a href="/">
+                        <h2>Tokepson blog&#39;s</h2> <br />
+                        <span>Tokepson blog&#39;s</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div id="kratos-blog-post">
+            <div class="container">
+                <div id="main" class="row">
+                    
+
+        
+
+            <section class="col-md-8">
+
+        
+
+            <article itemscope itemtype="https://schema.org/Article">
+    
+    <link itemprop="mainEntityOfPage" href="http://gannia.top/2025/06/23/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%B0%8F%E6%99%BA%E6%9C%BA%E5%99%A8%E4%BA%BA-%E9%80%9A%E8%BF%87MCP%E5%8D%8F%E8%AE%AE%E4%BB%A4AI%E6%8E%A7%E5%88%B6%E4%BD%A0%E7%9A%84%E7%94%B5%E8%84%91/">
+    <div class="kratos-hentry kratos-post-inner clearfix">
+        <header class="kratos-entry-header">
+            
+                <h1 class="kratos-entry-title text-center" itemprop="name headline">通过MCP协议令AI控制电脑</h1>
+            
+            
+            <ul class="kratos-post-meta text-center">
+                <li><time datetime="2025-06-23T06:35:00.000Z" itemprop="datePublished"><i class="fa fa-calendar"></i> 2025-06-23</time></li>
+                <li itemprop="author" itemscope itemtype="https://schema.org/Person">
+                    <i class="fa fa-user"></i> 作者 <span itemprop="name">Tokepson</span>
+                </li>
+                
+                    <li>
+                        <i class="fa fa-edit"></i> 
+                        
+                        
+                            ~6.58K
+                        
+                        字
+                    </li>
+                
+                
+                    <li id="/2025/06/23/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%B0%8F%E6%99%BA%E6%9C%BA%E5%99%A8%E4%BA%BA-%E9%80%9A%E8%BF%87MCP%E5%8D%8F%E8%AE%AE%E4%BB%A4AI%E6%8E%A7%E5%88%B6%E4%BD%A0%E7%9A%84%E7%94%B5%E8%84%91/" class="leancloud_visitors" data-flag-title="通过MCP协议令AI控制电脑">
+                        <i class="fa fa-eye"></i>
+                        <span class="leancloud-visitors-count"> </span> 次阅读
+                    </li>
+                
+            </ul>
+        </header>
+        <div class="kratos-post-content">
+            
+            <div id="expire-alert" class="alert alert-warning hidden" role="alert">
+                <div class="icon"><i class="fa fa-warning"></i></div>
+                <div class="text"><p>本文最后编辑于 <time datetime="1750696176000"></time> 前，其中的内容可能需要更新。</p></div>
+            </div>
+            
+            
+            
+            <hr />
+            <div itemprop="articleBody"><h1 id="嵌入式小智AI机器人-通过-MCP-协议令-AI-控制你的电脑"><a href="#嵌入式小智AI机器人-通过-MCP-协议令-AI-控制你的电脑" class="headerlink" title="[嵌入式小智AI机器人] 通过 MCP 协议令 AI 控制你的电脑"></a>[嵌入式小智AI机器人] 通过 MCP 协议令 AI 控制你的电脑</h1><p>前几个月入手了最新出来的小智 AI 的 ESP32 开发版，这两天群里的大佬做的 <strong>小智 AI_MCP 一键包</strong>更新到了 27.35.6 版本，上手玩玩，顺便记录下。</p>
+<hr>
+<h3 id="碎碎念"><a href="#碎碎念" class="headerlink" title="碎碎念"></a>碎碎念</h3><p>不得不说我觉得目前的小智AI除了在 <strong>逻辑思维</strong> 以及 <strong>记忆能力</strong> 、 <strong>视觉（抽象的图像理解能力）</strong> 和 <strong>任务化（推理）</strong> 方面上，已经是最接近 *<em>智能体</em> *的产品了。</p>
+<p>同时也是近几年 <strong>开源势头最猛烈的</strong> 、 <strong>最平民化的</strong> 实体智能体产品。它的低成本硬件（ESP32-S3开发板不到100元）、开源生态（MIT许可证）和强大的社区支持，让普通人也能轻松打造自己的AI助手，堪比当年Linux。（仅代表个人，勿喷）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">#### 什么是小智AI_MCP一键包？</span><br><span class="line">小智AI_MCP一键包是社区基于**小智AI（Xiaozhi-ESP32）**项目开发的一个集成工具，结合**Model Context Protocol（MCP）**，让ESP32设备通过AI大模型（如Qwen、DeepSeek）实现对电脑的远程控制。27.35.6版本更新了以下亮点：</span><br><span class="line">- **更快的响应速度**：通过优化MCP协议栈，电脑控制指令的延迟降至200毫秒，接近实时。</span><br><span class="line">- **多端兼容性**：支持Windows、macOS和Linux，覆盖主流桌面系统。</span><br><span class="line">- **新功能**：增加了屏幕截图分析、自动化脚本执行和跨设备协同（如手机+电脑+IoT设备）。</span><br><span class="line">- **安全性提升**：支持本地MCP服务器部署，避免云端隐私泄露。</span><br><span class="line"></span><br><span class="line">(又出幻觉了？)</span><br><span class="line"></span><br><span class="line">MCP协议是小智AI的核心优势之一，它由Anthropic开源，允许AI模型与外部工具、数据源和设备标准化交互。简单来说，MCP就像AI的“神经中枢”，让小智AI能“理解”你的语音指令，翻译成电脑可执行的操作，比如打开应用、发送邮件或运行脚本。[](https://www.descope.com/learn/post/mcp)</span><br><span class="line"></span><br><span class="line">#### 为什么这么火？</span><br><span class="line">- **平民化**：ESP32-S3开发板成本低至几十元，搭配免费的MCP一键包，普通开发者甚至学生都能玩转AI控制电脑。</span><br><span class="line">- **开源生态**：GitHub上的xiaozhi-esp32项目（https://github.com/78/xiaozhi-esp32）Star数已超13.6万，社区贡献了大量插件和教程。[](https://github.com/78/xiaozhi-esp32)</span><br><span class="line">- **功能强大**：从基础的语音交互（支持中、英、日等多语言）到复杂的电脑自动化任务（如批量处理文件、定时关机），小智AI几乎无所不能。[](https://x.com/shao__meng/status/1899263785489293503)</span><br><span class="line">- **DIY乐趣**：硬件支持面包板扩展，可接麦克风、摄像头、传感器等，软件支持Python和Arduino IDE，满足创客的折腾欲望。</span><br><span class="line"></span><br><span class="line">省略....</span><br><span class="line"></span><br><span class="line">以上部分内容为AI生成</span><br></pre></td></tr></table></figure>
+
+<p>不过说实在的我有点不甘心，明明也做了类似的东西，但是效果就是差那么点，没达到小智 AI 那种我想要实现的效果。</p>
+<p>—— 这个（程序实现）<br><a target="_blank" rel="noopener" href="https://github.com/toke648/AI-Interactive-LLM-VTuber">https://github.com/toke648/AI-Interactive-LLM-VTuber</a></p>
+<p>—— 这个（智能终端）<br><a target="_blank" rel="noopener" href="https://github.com/toke648/AutoExecAI">https://github.com/toke648/AutoExecAI</a></p>
+<p>—— 还有这个（理论 &amp; 工作流）</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/toke648/Neuro-reasoning-big-model">https://github.com/toke648/Neuro-reasoning-big-model</a><br><a target="_blank" rel="noopener" href="https://github.com/toke648/LLM-Cognitive-System-Architecture">https://github.com/toke648/LLM-Cognitive-System-Architecture</a></p>
+<p>难道是我还不够努力吗…</p>
+<p>要争取赶上各位大佬 (。&gt;︿&lt;)_θ</p>
+<hr>
+<h3 id="为什么-MCP-是一个突破"><a href="#为什么-MCP-是一个突破" class="headerlink" title="为什么 MCP 是一个突破"></a>为什么 MCP 是一个突破</h3><p>我们知道过去一年时间，AI 模型的发展非常迅速，从 GPT 4 到 Claude Sonnet 3.5 到 Deepseek R1，推理和幻觉都进步的非常明显。</p>
+<p>新的 AI 应用也很多，但我们都能感受到的一点是，目前市场上的 AI 应用基本都是全新的服务，和我们原来常用的服务和系统并没有集成，换句话说，AI 模型和我们已有系统集成发展的很缓慢。</p>
+<p>例如我们目前还不能同时通过某个 AI 应用来做到联网搜索、发送邮件、发布自己的博客等等，这些功能单个实现都不是很难，但是如果要全部集成到一个系统里面，就会变得遥不可及。</p>
+<p>如果你还没有具体的感受，我们可以思考一下日常开发中，想象一下在 IDE 中，我们可以通过 IDE 的 AI 来完成下面这些工作。</p>
+<ul>
+<li>询问 AI 来查询本地数据库已有的数据来辅助开发</li>
+<li>询问 AI 搜索 Github Issue 来判断某问题是不是已知的bug</li>
+</ul>
+<ul>
+<li>通过 AI 将某个 PR 的意见发送给同事的即时通讯软件(例如 Slack)来 Code Review</li>
+<li>通过 AI 查询甚至修改当前 AWS、Azure 的配置来完成部署</li>
+</ul>
+<p>以上谈到的这些功能通过 MCP 目前正在变为现实，大家可以关注 <a target="_blank" rel="noopener" href="https://docs.cursor.com/context/model-context-protocol">Cursor MCP</a> 和 <a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=Y_kaQmhGmZk">Windsurf MCP</a> 获取更多的信息。可以试试用 Cursor MCP + <a target="_blank" rel="noopener" href="https://browsertools.agentdesk.ai/installation">browsertools</a> 插件来体验一下在 Cursor 中自动获取 Chrome dev tools console log 的能力。</p>
+<p>为什么 AI 集成已有服务的进展这么缓慢？这里面有很多的原因，一方面是企业级的数据很敏感，大多数企业都要很长的时间和流程来动。另一个方面是技术方面，我们缺少一个开放的、通用的、有共识的协议标准。</p>
+<p>MCP 就是 Claude(Anthropic) 主导发布的一个开放的、通用的、有共识的协议标准，如果你是一个对 AI 模型熟悉的开发人员，想必对 Anthropic 这个公司不会陌生，他们发布了 Claude 3.5 Sonnet 的模型，到目前为止应该还是最强的编程 AI 模型(刚写完就发布了 3.7😅)。</p>
+<blockquote>
+<p>这里还是要多提一句，这个协议的发布最好机会应该是属于 OpenAI 的，如果 OpenAI 刚发布 GPT 时就推动协议，相信大家都不会拒绝，但是 OpenAI 变成了 CloseAI，只发布了一个封闭的 GPTs，这种需要主导和共识的标准协议一般很难社区自发形成，一般由行业巨头来主导。</p>
+</blockquote>
+<p>Claude 发布了 MCP 后，官方的 Claude Desktop 就开放了 MCP 功能，并且推动了开源组织 <a target="_blank" rel="noopener" href="https://github.com/modelcontextprotocol">Model Context Protocol</a>，由不同的公司和社区进行参与，例如下面就列举了一些由不同组织发布 MCP 服务器的例子。</p>
+<h2 id="关于-MCP-协议"><a href="#关于-MCP-协议" class="headerlink" title="关于 MCP 协议"></a>关于 MCP 协议</h2><p><strong>为什么是 MCP？</strong></p>
+<p>看到这里你可能有一个问题：在 23 年 OpenAI 发布 GPT function calling 的时候，不是也可以实现类似的功能吗？我们之前博客介绍的 AI Agent，不就是用来集成不同服务吗？那么为什么现在又有 MCP？</p>
+<p>简单总结一下三者之间的区别：</p>
+<h3 id="Function-Calling"><a href="#Function-Calling" class="headerlink" title="Function Calling"></a>Function Calling</h3><p>Function Calling 指的是 AI 模型根据上下文自动执行函数的机制，充当 AI 模型与外部系统之间的桥梁，不同模型有不同的实现，接入比较零散。</p>
+<p>缺点也很明显，比如：</p>
+<ul>
+<li>多轮对话不好维护</li>
+<li>调用任务增多时管理复杂</li>
+</ul>
+<h3 id="Model-Context-Protocol（MCP）"><a href="#Model-Context-Protocol（MCP）" class="headerlink" title="Model Context Protocol（MCP）"></a>Model Context Protocol（MCP）</h3><p>MCP 是一种标准协议，就像 Type-C 接口一样，让 AI 模型能与不同 API、数据源无缝对接，避免各平台零散调用，构建标准化生态。</p>
+<p><strong>MCP 有这些优点：</strong></p>
+<ul>
+<li>通用标准，服务商可接入，开发者也能方便扩展</li>
+<li>把任务分层处理，有描述、有输入&#x2F;输出，能给 AI Agent 大大减少负担</li>
+<li>上下文一致，支持复杂对话与任务链式调用</li>
+</ul>
+<h3 id="AI-Agent"><a href="#AI-Agent" class="headerlink" title="AI Agent"></a>AI Agent</h3><p>AI Agent 就是能自主决策、执行任务的智能体，有 MCP 协议帮忙，它能方便接入各种能力，然后自己分析目标、自动完成任务，不再仅仅停留在“建议你怎么做”的阶段。</p>
+<h3 id="MCP-如何工作"><a href="#MCP-如何工作" class="headerlink" title="MCP 如何工作"></a>MCP 如何工作</h3><p>那我们来介绍一下 MCP 的工作原理。首先我们看一下官方的 MCP 架构图。<br><img src="https://storage.guangzhengli.com/images/MCP.png" alt="https:&#x2F;&#x2F;storage.guangzhengli.com&#x2F;images&#x2F;MCP.png"></p>
+<h3 id="MCP-架构图"><a href="#MCP-架构图" class="headerlink" title="MCP 架构图"></a>MCP 架构图</h3><p>总共分为了下面五个部分：</p>
+<ul>
+<li>MCP Hosts: Hosts 是指 LLM 启动连接的应用程序，像 Cursor, Claude Desktop、Cline 这样的应用程序。</li>
+<li>MCP Clients: 客户端是用来在 Hosts 应用程序内维护与 Server 之间 1:1 连接。</li>
+<li>MCP Servers: 通过标准化的协议，为 Client 端提供上下文、工具和提示。</li>
+<li>Local Data Sources: 本地的文件、数据库和 API。</li>
+<li>Remote Services: 外部的文件、数据库和 API。<br>整个 MCP 协议核心的在于 Server，因为 Host 和 Client 相信熟悉计算机网络的都不会陌生，非常好理解，但是 Server 如何理解呢？</li>
+</ul>
+<p>看看 Cursor 的 AI Agent 发展过程，我们会发现整个 AI 自动化的过程发展会是从 Chat 到 Composer 再进化到完整的 AI Agent。</p>
+<p>AI Chat 只是提供建议，如何将 AI 的 response 转化为行为和最终的结果，全部依靠人类，例如手动复制粘贴，或者进行某些修改。</p>
+<p>AI Composer 是可以自动修改代码，但是需要人类参与和确认，并且无法做到除了修改代码之外的其它操作。</p>
+<p>AI Agent 是一个完全的自动化程序，未来完全可以做到自动读取 Figma 的图片，自动生产代码，自动读取日志，自动调试代码，自动 push 代码到 GitHub。</p>
+<p>而 MCP Server 就是为了实现 AI Agent 的自动化而存在的，它是一个中间层，告诉 AI Agent 目前存在哪些服务，哪些 API，哪些数据源，AI Agent 可以根据 Server 提供的信息来决定是否调用某个服务，然后通过 Function Calling 来执行函数。</p>
+<p>详细可以去这里看</p>
+<p><strong>引用自大佬：</strong> <a target="_blank" rel="noopener" href="https://guangzhengli.com/blog/zh/model-context-protocol">https://guangzhengli.com/blog/zh/model-context-protocol</a></p>
+<hr>
+<p><strong>小智AI官方的MCP接口实现：</strong><br><a target="_blank" rel="noopener" href="https://github.com/78/mcp-calculator">https://github.com/78/mcp-calculator</a></p>
+<p><strong>代码示例：</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> mcp.server.fastmcp <span class="keyword">import</span> FastMCP</span><br><span class="line"></span><br><span class="line">mcp = FastMCP(<span class="string">&quot;YourToolName&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="meta">@mcp.tool()</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">your_tool</span>(<span class="params">parameter: <span class="built_in">str</span></span>) -&gt; <span class="built_in">dict</span>:</span><br><span class="line">    <span class="string">&quot;&quot;&quot;Tool description here&quot;&quot;&quot;</span></span><br><span class="line">    <span class="comment"># Your implementation</span></span><br><span class="line">    <span class="keyword">return</span> &#123;<span class="string">&quot;success&quot;</span>: <span class="literal">True</span>, <span class="string">&quot;result&quot;</span>: result&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    mcp.run(transport=<span class="string">&quot;stdio&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>小智AI_MCP一键包下载链接</strong>： <a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1pufO8qITdQ4Jg86VNSWL7g?pwd=isdq">百度网盘（提取码：isdq）</a></p>
+<p>点击安装程序就能自动配置环境，支持自定义功能（需要提前下载好python），比如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">在电脑上打开URL网址</span><br><span class="line">运行电脑端软件文件或程序</span><br><span class="line">在电脑上打开URL网址</span><br><span class="line">在电脑上运行CMD命令</span><br><span class="line">在电脑上创建文件与写入内容</span><br><span class="line">读取复制内容</span><br><span class="line">填入一段内容</span><br><span class="line">回车发送</span><br><span class="line">撤销操作</span><br><span class="line">锁定电脑</span><br><span class="line">电脑关机计划</span><br><span class="line">设置主人电脑系统的音量</span><br><span class="line">调用系统截图工具</span><br><span class="line">显示电脑桌面</span><br><span class="line">查看系统资源使用情况</span><br><span class="line">查看电脑配置信息</span><br><span class="line">获取桌面完整路径</span><br><span class="line">...</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>也可以自己扩展，比如整一个开关灯、酷狗点歌之类的小工具，然后放到 <code>C:\xiaozhi\MCP\MCP_Windows</code> 里，模型自动识别。</p>
+<hr>
+<p>下面是我给酷狗点歌写的工具示例，直接用 <code>@mcp.tool()</code> 修饰就能给 AI 调用啦：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@mcp.tool()</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">播放酷狗歌曲API_输入音乐名字</span>(<span class="params">song_name: <span class="built_in">str</span></span>) -&gt; <span class="built_in">dict</span>:</span><br><span class="line">    <span class="string">&quot;&quot;&quot; 搜索歌曲并返回播放链接，提供歌曲名即可 &quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        response = requests.get(</span><br><span class="line">            <span class="string">f&quot;http://mobilecdn.kugou.com/api/v3/search/song?format=json&amp;keyword=<span class="subst">&#123;song_name&#125;</span>&amp;page=1&quot;</span>)</span><br><span class="line">        song = response.json()[<span class="string">&#x27;data&#x27;</span>][<span class="string">&#x27;info&#x27;</span>][<span class="number">0</span>]</span><br><span class="line">        songname = song[<span class="string">&#x27;songname&#x27;</span>]</span><br><span class="line">        <span class="built_in">hash</span> = song[<span class="string">&#x27;hash&#x27;</span>]</span><br><span class="line">        pay_type = song[<span class="string">&#x27;pay_type&#x27;</span>]</span><br><span class="line"></span><br><span class="line">        hash_url = <span class="string">f&quot;http://m.kugou.com/app/i/getSongInfo.php?cmd=playInfo&amp;hash=<span class="subst">&#123;<span class="built_in">hash</span>&#125;</span>&quot;</span></span><br><span class="line">        song_info = requests.get(hash_url).json()</span><br><span class="line">        backup_url = song_info.get(<span class="string">&#x27;backup_url&#x27;</span>)[<span class="number">0</span>]</span><br><span class="line"></span><br><span class="line">        os.makedirs(<span class="string">&quot;music&quot;</span>, exist_ok=<span class="literal">True</span>)</span><br><span class="line">        <span class="keyword">if</span> pay_type == <span class="number">0</span>:</span><br><span class="line">            resp = requests.get(backup_url)</span><br><span class="line">            <span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">f&quot;./music/<span class="subst">&#123;songname&#125;</span>.mp3&quot;</span>, <span class="string">&quot;wb&quot;</span>) <span class="keyword">as</span> f:</span><br><span class="line">                f.write(resp.content)</span><br><span class="line">            play(AudioSegment.from_mp3(<span class="string">f&quot;./music/<span class="subst">&#123;songname&#125;</span>.mp3&quot;</span>))</span><br><span class="line">            <span class="keyword">return</span> <span class="string">f&quot;<span class="subst">&#123;songname&#125;</span> 播放中...&quot;</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="string">f&quot;<span class="subst">&#123;songname&#125;</span> 是付费歌曲，暂时不支持&quot;</span></span><br><span class="line">    <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">f&quot;出错啦: <span class="subst">&#123;e&#125;</span>&quot;</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="资源链接："><a href="#资源链接：" class="headerlink" title="资源链接："></a>资源链接：</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://guangzhengli.com/blog/zh/model-context-protocol">MCP 终极指南</a>	—— （大…大佬…，这个UI爱了）</li>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/27327515233">知乎解读 MCP 协议</a></li>
+<li><a target="_blank" rel="noopener" href="https://mcp.ad/">MCP 官网</a></li>
+<li>小智AI_MCP一键包下载链接：<a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1pufO8qITdQ4Jg86VNSWL7g?pwd=isdq">百度网盘（提取码：isdq）</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/modelcontextprotocol">Model Context Protocol</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=Y_kaQmhGmZk">A Beginner’s Guide to using MCP in Windsurf!</a></li>
+</ul>
+<hr>
+<p>说实在的感觉我只会使用工具但懒得去了解工具的原理，不知道这对不对（因为学习原理实在太耗费精力了，还不如找点有意思的东西上手试试..）</p>
+</div>
+        </div>
+        
+            <div class="kratos-copyright text-center clearfix">
+                <h5 itemprop="copyrightNotice">本作品采用 <a rel="license nofollow" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">知识共享署名-相同方式共享 4.0 国际许可协议</a> 进行许可</h5>
+            </div>
+        
+        <footer class="kratos-entry-footer clearfix">
+            
+                <div class="post-like-donate text-center clearfix" id="post-like-donate">
+                
+                    <a class="donate" href="javascript:;"><i class="fa fa-bitcoin"></i> 打赏</a>
+                
+                
+                    <a class="share" href="javascript:;"><i class="fa fa-share-alt"></i> 分享</a>
+                    <div class="share-wrap" style="display: none;">
+    <div class="share-group">
+        <a href="javascript:;" class="share-plain qq" onclick="share('qq');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-qq"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain qzone" onclick="share('qzone');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-star"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weixin pop style-plain" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weixin"></i>
+            </div>
+            <div class="share-int">
+                <div class="qrcode" id="wechat-qr"></div>
+                <p>打开微信“扫一扫”，打开网页后点击屏幕右上角分享按钮</p>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weibo" onclick="share('weibo');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weibo"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain facebook style-plain" onclick="share('facebook');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-facebook"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain twitter style-plain" onclick="share('twitter');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-twitter"></i>
+            </div>
+        </a>
+    </div>
+    <script type="text/javascript">
+        $(()=>{
+            new QRCode("wechat-qr", {
+                text: "http://gannia.top/2025/06/23/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%B0%8F%E6%99%BA%E6%9C%BA%E5%99%A8%E4%BA%BA-%E9%80%9A%E8%BF%87MCP%E5%8D%8F%E8%AE%AE%E4%BB%A4AI%E6%8E%A7%E5%88%B6%E4%BD%A0%E7%9A%84%E7%94%B5%E8%84%91/",
+                width: 150,
+                height: 150,
+                correctLevel : QRCode.CorrectLevel.H
+            });
+        });
+        function share(dest) {
+            const qqBase        = "https://connect.qq.com/widget/shareqq/index.html?";
+            const weiboBase     = "https://service.weibo.com/share/share.php?";
+            const qzoneBase     = "https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?";
+            const facebookBase  = "https://www.facebook.com/sharer/sharer.php?";
+            const twitterBase   = "https://twitter.com/intent/tweet?";
+            const hostUrl       = "http://gannia.top/2025/06/23/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%B0%8F%E6%99%BA%E6%9C%BA%E5%99%A8%E4%BA%BA-%E9%80%9A%E8%BF%87MCP%E5%8D%8F%E8%AE%AE%E4%BB%A4AI%E6%8E%A7%E5%88%B6%E4%BD%A0%E7%9A%84%E7%94%B5%E8%84%91/";
+            const title         = "「通过MCP协议令AI控制电脑」";
+            const excerpt       = `[嵌入式小智AI机器人] 通过 MCP 协议令 AI 控制你的电脑前几个月入手了最新出来的小智 AI 的 ESP32 开发版，这两天群里的大佬做的 小智 AI_MCP 一键包更新到了 27.35.6 版本，上手玩玩，顺便记录下。
+
+碎...`;
+            let _URL;
+            switch (dest) {
+                case "qq"       : _URL = qqBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";     break;
+                case "weibo"    : _URL = weiboBase+"url="+hostUrl+"&title="+title+excerpt;                                 break;
+                case "qzone"    : _URL = qzoneBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";  break;
+                case "facebook" : _URL = facebookBase+"u="+hostUrl;                                                        break;
+                case "twitter"  : _URL = twitterBase+"text="+title+excerpt+"&url="+hostUrl;                                break;
+            }
+            window.open(_URL);
+        };
+    </script>
+</div>
+                
+                </div>
+            
+            <div class="footer-tag clearfix">
+                <div class="pull-left">
+                <i class="fa fa-tags"></i>
+                    <a class="tag-none-link" href="/tags/MCP/" rel="tag">MCP</a>, <a class="tag-none-link" href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" rel="tag">人工智能</a>, <a class="tag-none-link" href="/tags/%E5%B0%8F%E6%99%BAAI/" rel="tag">小智AI</a>
+                </div>
+                <div class="pull-date">
+                    <time datetime="2025-06-23T16:29:36.000Z" itemprop="dateModified">最后编辑：2025-06-24</time>
+                </div>
+            </div>
+        </footer>
+    </div>
+    
+        <nav class="navigation post-navigation clearfix" role="navigation">
+            
+            <div class="nav-previous clearfix">
+                <a title=" 丝滑的Hexo工作流" href="/2025/06/22/个人博客折腾-丝滑的Hexo工作流/">&lt; 上一篇</a>
+            </div>
+            
+            
+            <div class="nav-next clearfix">
+                <a title=" Giscus实现博客评论的控制" href="/2025/06/23/Giscus实现博客评论的控制/">下一篇 &gt;</a>
+            </div>
+            
+        </nav>
+    
+    
+        <div id="v-comments" class="post-comments bg-image"></div>
+<script>
+    var load_comm = () => {
+        const init = () => {
+            new Valine({
+                el: '#v-comments',
+                appId: 'T8XpwvdOu85FCBOBqGDFoBr5-gzGzoHsz',
+                appKey: 'Jd2fqhSfAl8XJb2qdLMskVXy',
+                visitor: true,
+                enableQQ: false,
+                path: '/2025/06/23/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%B0%8F%E6%99%BA%E6%9C%BA%E5%99%A8%E4%BA%BA-%E9%80%9A%E8%BF%87MCP%E5%8D%8F%E8%AE%AE%E4%BB%A4AI%E6%8E%A7%E5%88%B6%E4%BD%A0%E7%9A%84%E7%94%B5%E8%84%91/'
+            });
+        }
+        if (typeof Valine === 'undefined') {
+            const src = '/vendors/valine@1.4.18/dist/Valine.min.js';
+            $.getScript(src, init);
+        } else {
+            init();
+        }
+    };
+</script>
+<noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="https://valine.js.org/">comments powered by Valine.</a></noscript>
+
+    
+</article>
+
+        
+
+            </section>
+
+        
+
+                
+            
+
+<section id="kratos-widget-area" class="col-md-4 hidden-xs hidden-sm">
+    <!-- 文章和页面根据splitter来分割，没有的话就从头开始设置为sticky -->
+    
+    
+                <aside id="krw-about" class="widget widget-kratos-about clearfix">
+    <div class="photo-background"></div>
+    <div class="photo-wrapper clearfix">
+        <div class="photo-wrapper-tip text-center">
+            <img class="about-photo" src="/images/141054658.jpg" loading="lazy" decoding="auto" />
+        </div>
+    </div>
+    <div class="textwidget">
+        <p class="text-center">A person who is gradually sinking into the abyss, lost and confused, and a person who wants to create their own dream world</p>
+    </div>
+    <div class="site-meta">
+        <a class="meta-item" href="/archives/">
+            <span class="title">
+                文章
+            </span>
+            <span class="count">
+                19
+            </span>
+        </a>
+        <a class="meta-item" href="/categories/">
+            <span class="title">
+                分类
+            </span>
+            <span class="count">
+                9
+            </span>
+        </a>
+        <a class="meta-item" href="/tags/">
+            <span class="title">
+                标签
+            </span>
+            <span class="count">
+                21
+            </span>
+        </a>
+    </div>
+</aside>
+            
+                    <div class="sticky-area">
+                
+                
+  <aside id="krw-categories" class="widget widget-kratos-categories clearfix">
+    <h4 class="widget-title"><i class="fa fa-folder"></i>分类目录</h4>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%A4%A9%E6%96%87/">天文</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%AF%8F%E6%97%A5%E8%AF%9D%E9%A2%98/">每日话题</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%94%9F%E6%B4%BB/">生活</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A4%E7%9F%A5%E6%8E%A2%E7%B4%A2/">认知探索</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%B5%84%E6%BA%90/">资源</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%97%B2%E8%81%8A/">闲聊</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%9A%8F%E7%AC%94/">随笔</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%9F%B3%E4%B9%90/">音乐</a><span class="category-list-count">1</span></li></ul>
+  </aside>
+
+
+            
+                
+  <aside id="krw-tags" class="widget widget-kratos-tags clearfix">
+    <h4 class="widget-title"><i class="fa fa-tags"></i>标签聚合</h4>
+      <div class="tag-clouds">
+        <a href="/tags/2233/" style="font-size: 0.6em;">2233</a> <a href="/tags/AI/" style="font-size: 0.6em;">AI</a> <a href="/tags/Butterfly-%E4%B8%BB%E9%A2%98/" style="font-size: 0.6em;">Butterfly 主题</a> <a href="/tags/Hexo/" style="font-size: 0.6em;">Hexo</a> <a href="/tags/MCP/" style="font-size: 0.6em;">MCP</a> <a href="/tags/fl-studio/" style="font-size: 0.6em;">fl studio</a> <a href="/tags/giscus/" style="font-size: 0.6em;">giscus</a> <a href="/tags/github/" style="font-size: 0.6em;">github</a> <a href="/tags/hexo/" style="font-size: 0.8em;">hexo</a> <a href="/tags/waline/" style="font-size: 0.6em;">waline</a> <a href="/tags/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/" style="font-size: 0.6em;">个人博客</a> <a href="/tags/%E4%B9%90%E7%90%86/" style="font-size: 0.6em;">乐理</a> <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" style="font-size: 0.7em;">人工智能</a> <a href="/tags/%E5%B0%8F%E6%99%BAAI/" style="font-size: 0.6em;">小智AI</a> <a href="/tags/%E6%97%A5%E5%B8%B8/" style="font-size: 0.6em;">日常</a> <a href="/tags/%E6%97%A5%E8%AE%B0/" style="font-size: 0.6em;">日记</a> <a href="/tags/%E6%9C%9B%E8%BF%9C%E9%95%9C/" style="font-size: 0.6em;">望远镜</a> <a href="/tags/%E7%94%9F%E6%B4%BB/" style="font-size: 0.6em;">生活</a>
+      </div>
+  </aside>
+
+            
+                
+  <aside id="krw-posts" class="widget widget-kratos-posts">
+  <h4 class="widget-title"><i class="fa fa-file"></i>最新文章</h4>
+  <div class="tab-content">
+      <ul class="list-group">
+        
+        
+          
+          
+            <a class="list-group-item" href="/2025/08/08/%E4%B8%AA%E4%BA%BA%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%BF%E7%94%A8%E8%A7%82/"><i class="fa  fa-book"></i> 个人计算机使用观</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2025/08/08/%E5%9C%9F%E8%B1%86%E4%BD%ACba%E6%BC%AB%E7%94%BB%E5%AE%8C%E6%95%B4%E8%B5%84%E6%BA%90/"><i class="fa  fa-book"></i> 土豆佬ba漫画日文完整</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2025/07/29/7-29-%E8%AE%A4%E7%9F%A5%E6%8E%A2%E7%B4%A2/"><i class="fa  fa-book"></i> 7/29 认知探索</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2025/07/24/%E5%A4%A9%E6%96%87%E8%AE%B0%E5%BD%95%20%E7%89%9B%E9%A1%BF%E5%8F%8D%E5%B0%84%E5%BC%8F%E6%9C%9B%E8%BF%9C%E9%95%9C/"><i class="fa  fa-book"></i> 天文记录 | 牛顿反射式望远镜</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2025/07/15/%E4%BA%B2%E5%AD%90%E5%85%B3%E7%B3%BB%E4%B8%8E%E8%B4%A3%E4%BB%BB/"><i class="fa  fa-book"></i> 亲子关系与责任</a>
+            
+          
+        
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+      </ul>
+  </div>
+  </aside>
+
+            
+    </div>
+</section>
+        
+        </div>
+    </div>
+</div>
+<footer>
+    <div id="footer"  class="ap-lrc"  >
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3 footer-list text-center">
+                    <ul class="kratos-social-icons">
+                        <!-- Keep for compatibility -->
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <!-- New links -->
+                        
+                    </ul>
+                    <ul class="kratos-copyright">
+                        <div>
+                            <li>&copy; 2025 Tokepson blog's 版权所有.</li>
+                            <li>本站已运行<span id="span_dt">Loading...</span></li>
+                        </div>
+                        <div>
+                            <li>Theme <a href="https://github.com/Candinya/Kratos-Rebirth" target="_blank">Kratos:Rebirth</a></li>
+                            <li>Site built with&nbsp;<i class="fa fa-heart throb" style="color:#d43f57"></i>&nbsp;by tokepson.</li>
+                        </div>
+                        <div>
+                            <li>Powered by <a href="https://hexo.io" target="_blank" rel="nofollow">Hexo</a></li>
+                            <li>Hosted on <a href="https://github.io" target="_blank">Github Pages</a></li>
+                        </div>
+                        <div>
+                            
+                            
+                        </div>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="kr-tool text-center">
+            <div class="tool">
+                
+                    <div class="box search-box">
+                        <a href="/search/">
+                            <span class="fa fa-search"></span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="box theme-box" id="darkmode-switch">
+                        <span class="fa fa-adjust"></span>
+                    </div>
+                
+                
+                    <div class="box theme-box" id="snow-switch">
+                        <span class="fa fa-snowflake-o"></span>
+                    </div>
+                
+                
+            </div>
+            <div class="box gotop-box">
+                <span class="fa fa-chevron-up"></span>
+            </div>
+        </div>
+    </div>
+</footer>
+</div>
+</div>
+
+        <script defer src="/vendors/bootstrap@3.3.4/dist/js/bootstrap.min.js"></script>
+<script defer src="/vendors/nprogress@0.2.0/nprogress.js"></script>
+<script>
+    if (!window.kr) {
+        window.kr = {};
+    }
+    window.kr.notMobile = (!(navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i)));
+    window.kr.siteRoot = "/";
+</script>
+
+    <div>
+        <canvas id="snow"></canvas>
+        <script async src="/js/snow.min.js"></script>
+    </div>
+
+
+    <script async src="/js/candy.min.js"></script>
+
+
+
+    <script defer src="/vendors/aplayer@1.10.1/dist/APlayer.min.js"></script>
+    
+    <script defer src="/vendors/meting@2.0.1/dist/Meting.min.js"></script>
+    <meting-js
+        server="netease"
+        type="playlist"
+        id="3204190542"
+        order="random"
+        fixed="true"
+    >
+    </meting-js>
+
+
+
+    <script defer src="/vendors/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+<script defer src="/js/kratosr.min.js"></script>
+<script defer src="/js/pjax.min.js"></script>
+
+    <script defer src="/vendors/layui-src@2.5.5/dist/layui.all.js"></script>
+
+
+
+<!-- Extra support for third-party plguins  -->
+
+
+
+        
+        <!-- 看板娘 -->
+        <!-- waifu-tips.js 依赖 JQuery 库 -->
+        <script src="/assets/jquery.min.js?v=3.3.1"></script>
+        
+        <!-- 实现拖动效果，需引入 JQuery UI -->
+        <script src="/assets/jquery-ui.min.js"></script>
+
+        <!-- 使用 autoload.js 引入看板娘 -->
+        <script src="/assets/autoload.js?v=1.4.2"></script>
+        <script src="/assets/waifu-tips.js?v=1.4.2"></script>
+        <script src="/assets/live2d.js"></script>
+        
+        <script type="text/javascript">
+            live2d_settings['modelId'] = "3";
+            live2d_settings['modelTexturesId'] = "0";
+            live2d_settings['modelStorage'] = "true";
+            live2d_settings['modelRandMode'] = "switch";
+            live2d_settings['modelTexturesRandMode'] = "rand";
+            live2d_settings['waifuSize'] = "280x250";
+            live2d_settings['waifuEdgeSide'] = "left:1050";
+            live2d_settings['waifuEdgeTop'] = "top:150";
+            live2d_settings['waifuDraggable'] = "axis-x";
+            live2d_settings['waifuDraggableRevert'] = "true";
+            live2d_settings['l2dVersion'] = "1.4.2";
+            live2d_settings['l2dVerDate'] = "2018.11.12";
+            live2d_settings['homePageUrl'] = "";
+            live2d_settings['aboutPageUrl'] = "https://www.fghrsh.net/post/123.html";
+
+            initModel("/assets/waifu-tips.json")
+        </script>
+        
+    </body>
+</html>

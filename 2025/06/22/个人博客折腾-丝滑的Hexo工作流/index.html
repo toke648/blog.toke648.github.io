@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="zh">
+    <head>
+  <!-- 元数据 -->
+  <meta charset="utf-8">
+  
+  
+  <title>丝滑的Hexo工作流 | Tokepson blog&#39;s</title>
+  
+  <meta name="author" content="tokepson" />
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="robots" content="index,follow" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <meta name="format-detection" content="telphone=no, email=no" />
+  
+    <meta name="keywords" content="hexo" />
+  
+  <meta name="description" content="[个人博客折腾记录] 丝滑的Hexo工作流前阵子折腾 Hexo 部署，有些小技巧记录下来，以后可以一键执行，不用每次手敲命令，也能减少出错概率。   一、添加 CNAME 实现自定义域名自动生效用 GitHub Pages 时，绑定自定义域名只需要在仓库里添加一个 CNAME 文件，里面写上你的域名，比如： 1yourdomain.com  步骤： 在 source&#x2F; 目录中创建文件 CNAME（">
+<meta property="og:type" content="article">
+<meta property="og:title" content="丝滑的Hexo工作流">
+<meta property="og:url" content="http://gannia.top/2025/06/22/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%8A%98%E8%85%BE-%E4%B8%9D%E6%BB%91%E7%9A%84Hexo%E5%B7%A5%E4%BD%9C%E6%B5%81/index.html">
+<meta property="og:site_name" content="Tokepson blog&#39;s">
+<meta property="og:description" content="[个人博客折腾记录] 丝滑的Hexo工作流前阵子折腾 Hexo 部署，有些小技巧记录下来，以后可以一键执行，不用每次手敲命令，也能减少出错概率。   一、添加 CNAME 实现自定义域名自动生效用 GitHub Pages 时，绑定自定义域名只需要在仓库里添加一个 CNAME 文件，里面写上你的域名，比如： 1yourdomain.com  步骤： 在 source&#x2F; 目录中创建文件 CNAME（">
+<meta property="og:locale">
+<meta property="og:image" content="http://gannia.top/%5Cimages%5Cpasted-6.png">
+<meta property="og:image" content="http://gannia.top/images/pasted-7.png">
+<meta property="og:image" content="http://gannia.top/images/pasted-11.png">
+<meta property="article:published_time" content="2025-06-22T08:39:00.000Z">
+<meta property="article:modified_time" content="2025-06-23T16:43:02.000Z">
+<meta property="article:author" content="tokepson">
+<meta property="article:tag" content="hexo">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://gannia.top/%5Cimages%5Cpasted-6.png">
+  
+  <!-- 站点验证相关 -->
+  
+    
+    
+    
+  
+  <!-- 样式表文件 -->
+  <link rel="stylesheet" id="kratos-css" href="/css/kratosr.min.css" media="all"></script>
+  
+    <link rel="stylesheet" id="darkmode-css" href="/css/kr-color-dark.min.css" media="(prefers-color-scheme: dark)"></script>
+    <script src="/js/kr-dark.min.js"></script>
+  
+  
+    <link rel="stylesheet" id="highlight-css" href="/css/highlight/night-eighties.min.css" media="all"></script>
+  
+  <link rel="stylesheet" id="fontawe-css" href="/vendors/font-awesome@4.7.0/css/font-awesome.min.css" media="all"></script>
+  <link rel="stylesheet" id="nprogress-css" href="/vendors/nprogress@0.2.0/nprogress.css" media="all"></script>
+  
+  
+    <link rel="stylesheet" href="/vendors/aplayer@1.10.1/dist/APlayer.min.css"></script>
+  
+  
+    <link rel="stylesheet" href="/vendors/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css"></script>
+  
+  <!-- 不得不预先加载的一些JS文件 -->
+  <script src="/vendors/jquery@3.6.0/dist/jquery.min.js"></script>
+  
+    <script src="/vendors/qrcode_js@1.0.0/qrcode.min.js"></script>
+  
+  
+  <style>
+    
+      .kratos-cover.kratos-cover-2 {
+        background-image: url('/images/banner.webp');
+      }
+    
+    
+      @media(min-width:768px) {
+        body.custom-background {
+          background-image: url('/images/bg.webp');
+        }
+      }
+    
+  </style>
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+    <body class="custom-background">
+        <div id="kratos-wrapper">
+    <div id="kratos-page">
+        <div id="kratos-header">
+            <header id="kratos-desktop-topnav" class="kratos-topnav">
+                <div class="container">
+                    <div class="nav-header">
+                        <nav id="kratos-menu-wrap">
+                            <ul id="kratos-primary-menu" class="sf-menu">
+                                
+                                    
+                                    
+                                        
+                                            <li><a href="/"><i class="fa fa-home"></i>首页</a></li>
+                                        
+                                    
+                                        
+                                            <li><a href="/about/"><i class="fa fa-user"></i>关于</a></li>
+                                        
+                                    
+                                        
+                                            <li><a href="/resources/"><i class="fa fa-folder-open"></i>资源</a></li>
+                                        
+                                    
+                                        
+                                            <li><a href="/library/"><i class="fa fa-book"></i>图书馆</a></li>
+                                        
+                                    
+                                        
+                                            <li><a href="/talk/"><i class="fa fa-comments"></i>讨论区</a></li>
+                                        
+                                    
+                                        
+                                            <li>
+                                                <a><i class="fa fa-list"></i>列表</a>
+                                                <ul class="sub-menu">
+                                                    
+                                                        
+                                                    
+                                                        
+                                                            <li><a href="/music/"><i class="fa fa-music"></i>音乐</a></li>
+                                                        
+                                                    
+                                                        
+                                                            <li><a href="/drawing/"><i class="fa fa-paint-brush"></i>绘画</a></li>
+                                                        
+                                                    
+                                                        
+                                                            <li><a href="/photography/"><i class="fa fa-camera"></i>摄影</a></li>
+                                                        
+                                                    
+                                                        
+                                                            <li><a href="/movies/"><i class="fa fa-film"></i>电影</a></li>
+                                                        
+                                                    
+                                                </ul>
+                                            </li>
+                                        
+                                    
+                                        
+                                            <li><a href="/links/"><i class="fa fa-link"></i>友联</a></li>
+                                        
+                                    
+                                        
+                                            <li><a href="/share/"><i class="fa fa-share-alt"></i>分享</a></li>
+                                        
+                                    
+                                        
+                                            <li>
+                                                <a><i class="fa fa-external-link-alt"></i>外部链接</a>
+                                                <ul class="sub-menu">
+                                                    
+                                                        
+                                                    
+                                                        
+                                                            <li><a target="_blank" rel="noopener" href="https://candinya.com"><i class="fa fa-blog"></i>作者博客</a></li>
+                                                        
+                                                    
+                                                        
+                                                            <li><a target="_blank" rel="noopener" href="https://github.com/Candinya/Kratos-Rebirth"><i class="fa fa-code-branch"></i>项目链接</a></li>
+                                                        
+                                                    
+                                                </ul>
+                                            </li>
+                                        
+                                    
+                                
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </header>
+            <header id="kratos-mobile-topnav" class="kratos-topnav">
+                <div class="container">
+                    <div class="color-logo"><a href="/">Tokepson blog&#39;s</a></div>
+                    <div class="nav-toggle">
+                        <a class="kratos-nav-toggle js-kratos-nav-toggle">
+                            <i></i>
+                        </a>
+                    </div>
+                </div>
+            </header>
+        </div>
+        <div class="kratos-start kratos-hero-2">
+            <!-- <div class="kratos-overlay"></div> -->
+            <div class="kratos-cover kratos-cover-2 text-center">
+                <div class="desc desc2 animate-box">
+                    <a href="/">
+                        <h2>Tokepson blog&#39;s</h2> <br />
+                        <span>Tokepson blog&#39;s</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div id="kratos-blog-post">
+            <div class="container">
+                <div id="main" class="row">
+                    
+
+        
+
+            <section class="col-md-8">
+
+        
+
+            <article itemscope itemtype="https://schema.org/Article">
+    
+    <link itemprop="mainEntityOfPage" href="http://gannia.top/2025/06/22/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%8A%98%E8%85%BE-%E4%B8%9D%E6%BB%91%E7%9A%84Hexo%E5%B7%A5%E4%BD%9C%E6%B5%81/">
+    <div class="kratos-hentry kratos-post-inner clearfix">
+        <header class="kratos-entry-header">
+            
+                <h1 class="kratos-entry-title text-center" itemprop="name headline">丝滑的Hexo工作流</h1>
+            
+            
+            <ul class="kratos-post-meta text-center">
+                <li><time datetime="2025-06-22T08:39:00.000Z" itemprop="datePublished"><i class="fa fa-calendar"></i> 2025-06-22</time></li>
+                <li itemprop="author" itemscope itemtype="https://schema.org/Person">
+                    <i class="fa fa-user"></i> 作者 <span itemprop="name">Tokepson</span>
+                </li>
+                
+                    <li>
+                        <i class="fa fa-edit"></i> 
+                        
+                        
+                            1269
+                        
+                        字
+                    </li>
+                
+                
+                    <li id="/2025/06/22/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%8A%98%E8%85%BE-%E4%B8%9D%E6%BB%91%E7%9A%84Hexo%E5%B7%A5%E4%BD%9C%E6%B5%81/" class="leancloud_visitors" data-flag-title="丝滑的Hexo工作流">
+                        <i class="fa fa-eye"></i>
+                        <span class="leancloud-visitors-count"> </span> 次阅读
+                    </li>
+                
+            </ul>
+        </header>
+        <div class="kratos-post-content">
+            
+            <div id="expire-alert" class="alert alert-warning hidden" role="alert">
+                <div class="icon"><i class="fa fa-warning"></i></div>
+                <div class="text"><p>本文最后编辑于 <time datetime="1750696982000"></time> 前，其中的内容可能需要更新。</p></div>
+            </div>
+            
+            
+            
+            <hr />
+            <div itemprop="articleBody"><h2 id="个人博客折腾记录-丝滑的Hexo工作流"><a href="#个人博客折腾记录-丝滑的Hexo工作流" class="headerlink" title="[个人博客折腾记录] 丝滑的Hexo工作流"></a>[个人博客折腾记录] 丝滑的Hexo工作流</h2><p>前阵子折腾 Hexo 部署，有些小技巧记录下来，以后可以一键执行，不用每次手敲命令，也能减少出错概率。</p>
+<p><img src="/%5Cimages%5Cpasted-6.png" alt="upload successful"></p>
+<hr>
+<h3 id="一、添加-CNAME-实现自定义域名自动生效"><a href="#一、添加-CNAME-实现自定义域名自动生效" class="headerlink" title="一、添加 CNAME 实现自定义域名自动生效"></a>一、添加 <code>CNAME</code> 实现自定义域名自动生效</h3><p>用 GitHub Pages 时，绑定自定义域名只需要<strong>在仓库里添加一个 <code>CNAME</code> 文件</strong>，里面写上你的域名，比如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yourdomain.com</span><br></pre></td></tr></table></figure>
+
+<h4 id="步骤："><a href="#步骤：" class="headerlink" title="步骤："></a>步骤：</h4><ol>
+<li>在 <code>source/</code> 目录中创建文件 <code>CNAME</code>（无扩展名），文件内容就是你的域名。</li>
+<li>每次执行 <code>hexo g</code> 时，这个文件会自动复制进 <code>public</code> 目录，部署也会自动一起推送，这样 GitHub Pages 就能识别到域名，不再需要手动去 GitHub 设置页面改域名。</li>
+</ol>
+<blockquote>
+<p>重点就是保证 <code>CNAME</code> 持续存在，这样以后再怎么部署也能自动生效啦。</p>
+</blockquote>
+<hr>
+<h3 id="二、一键执行部署和本地预览"><a href="#二、一键执行部署和本地预览" class="headerlink" title="二、一键执行部署和本地预览"></a>二、一键执行部署和本地预览</h3><p>为了方便，我给自己弄了两个简单的批处理脚本，双击就能执行对应任务，不用再一行一行敲命令。</p>
+<h4 id="push-bat（一键部署）："><a href="#push-bat（一键部署）：" class="headerlink" title="push.bat（一键部署）："></a><code>push.bat</code>（一键部署）：</h4><figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">@<span class="built_in">echo</span> off</span><br><span class="line"><span class="built_in">echo</span> 正在清理旧文件...</span><br><span class="line">hexo clean</span><br><span class="line"><span class="built_in">echo</span> 生成静态文件并部署...</span><br><span class="line">hexo g -d</span><br><span class="line"><span class="built_in">echo</span> 部署完成！</span><br><span class="line"><span class="built_in">pause</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="server-bat（本地预览）："><a href="#server-bat（本地预览）：" class="headerlink" title="server.bat（本地预览）："></a><code>server.bat</code>（本地预览）：</h4><figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">@<span class="built_in">echo</span> off</span><br><span class="line"><span class="built_in">echo</span> 正在清理旧文件...</span><br><span class="line">hexo clean</span><br><span class="line"><span class="built_in">echo</span> 生成静态文件...</span><br><span class="line">hexo g</span><br><span class="line"><span class="built_in">echo</span> 启动本地服务器...</span><br><span class="line">hexo s</span><br></pre></td></tr></table></figure>
+
+<p>把这两个文件放在 Hexo 根目录，然后<strong>右键发送到桌面→快捷方式</strong>，就能一键启动。</p>
+<ul>
+<li>需要的话还可以加个hexo图标</li>
+</ul>
+<p><img src="/images/pasted-7.png" alt="upload successful"></p>
+<ul>
+<li>转换成ico格式，然后在属性的图标设置中更改，完美</li>
+</ul>
+<p><img src="/images/pasted-11.png" alt="upload successful"></p>
+<hr>
+<h3 id="三、可视化的博文管理：Hexo-admin"><a href="#三、可视化的博文管理：Hexo-admin" class="headerlink" title="三、可视化的博文管理：Hexo-admin"></a>三、可视化的博文管理：Hexo-admin</h3><p>用习惯 Markdown，但是偶尔也想在浏览器里写？试试看 <a target="_blank" rel="noopener" href="https://github.com/jaredly/hexo-admin">hexo-admin</a>！只需：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-admin --save</span><br></pre></td></tr></table></figure>
+
+<p>然后 <code>hexo s</code> 启动本地服务器，打开：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://localhost:4000/admin</span><br></pre></td></tr></table></figure>
+
+<p>就能用图形界面写博客啦，还能管理草稿。</p>
+<hr>
+<h3 id="四、网站统计：Umami-Cloud"><a href="#四、网站统计：Umami-Cloud" class="headerlink" title="四、网站统计：Umami Cloud"></a>四、网站统计：Umami Cloud</h3><p>最后再说个统计工具 <a target="_blank" rel="noopener" href="https://umami.is/">Umami</a>，完全免费，也能自己部署，集成也很简单：</p>
+<ol>
+<li>在官网注册账号，添加你的网站。</li>
+<li>把提供的 JS 统计脚本放进主题模板中，比如：</li>
+</ol>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">async</span> <span class="attr">defer</span> <span class="attr">data-website-id</span>=<span class="string">&quot;your-umami-id&quot;</span> <span class="attr">src</span>=<span class="string">&quot;https://your-umami-url/script.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>重新部署就能开始记录访客数据啦！后台可视化一目了然，数据隐私也有保障。</p>
+<hr>
+<h3 id="五、小结"><a href="#五、小结" class="headerlink" title="五、小结"></a>五、小结</h3><p>这样一套流程：</p>
+<ul>
+<li><strong>CNAME 自动生效</strong>避免老是重设域名。</li>
+<li><strong>批处理一键部署</strong>减少操作成本。</li>
+<li><strong>hexo-admin</strong>让写文更轻松。</li>
+<li><strong>Umami 统计</strong>帮你直观掌握站点动态。</li>
+</ul>
+<p>感觉把工具链弄顺畅，写博客也能更专注享受啦！<br>你也试试看吧，有问题可以留言给我~ 🎉</p>
+</div>
+        </div>
+        
+            <div class="kratos-copyright text-center clearfix">
+                <h5 itemprop="copyrightNotice">本作品采用 <a rel="license nofollow" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">知识共享署名-相同方式共享 4.0 国际许可协议</a> 进行许可</h5>
+            </div>
+        
+        <footer class="kratos-entry-footer clearfix">
+            
+                <div class="post-like-donate text-center clearfix" id="post-like-donate">
+                
+                    <a class="donate" href="javascript:;"><i class="fa fa-bitcoin"></i> 打赏</a>
+                
+                
+                    <a class="share" href="javascript:;"><i class="fa fa-share-alt"></i> 分享</a>
+                    <div class="share-wrap" style="display: none;">
+    <div class="share-group">
+        <a href="javascript:;" class="share-plain qq" onclick="share('qq');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-qq"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain qzone" onclick="share('qzone');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-star"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weixin pop style-plain" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weixin"></i>
+            </div>
+            <div class="share-int">
+                <div class="qrcode" id="wechat-qr"></div>
+                <p>打开微信“扫一扫”，打开网页后点击屏幕右上角分享按钮</p>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weibo" onclick="share('weibo');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weibo"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain facebook style-plain" onclick="share('facebook');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-facebook"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain twitter style-plain" onclick="share('twitter');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-twitter"></i>
+            </div>
+        </a>
+    </div>
+    <script type="text/javascript">
+        $(()=>{
+            new QRCode("wechat-qr", {
+                text: "http://gannia.top/2025/06/22/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%8A%98%E8%85%BE-%E4%B8%9D%E6%BB%91%E7%9A%84Hexo%E5%B7%A5%E4%BD%9C%E6%B5%81/",
+                width: 150,
+                height: 150,
+                correctLevel : QRCode.CorrectLevel.H
+            });
+        });
+        function share(dest) {
+            const qqBase        = "https://connect.qq.com/widget/shareqq/index.html?";
+            const weiboBase     = "https://service.weibo.com/share/share.php?";
+            const qzoneBase     = "https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?";
+            const facebookBase  = "https://www.facebook.com/sharer/sharer.php?";
+            const twitterBase   = "https://twitter.com/intent/tweet?";
+            const hostUrl       = "http://gannia.top/2025/06/22/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%8A%98%E8%85%BE-%E4%B8%9D%E6%BB%91%E7%9A%84Hexo%E5%B7%A5%E4%BD%9C%E6%B5%81/";
+            const title         = "「丝滑的Hexo工作流」";
+            const excerpt       = `[个人博客折腾记录] 丝滑的Hexo工作流前阵子折腾 Hexo 部署，有些小技巧记录下来，以后可以一键执行，不用每次手敲命令，也能减少出错概率。
+
+
+一、添加 CNAME 实现自定义域名自动生效用 GitHub Pages 时，绑定自...`;
+            let _URL;
+            switch (dest) {
+                case "qq"       : _URL = qqBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";     break;
+                case "weibo"    : _URL = weiboBase+"url="+hostUrl+"&title="+title+excerpt;                                 break;
+                case "qzone"    : _URL = qzoneBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";  break;
+                case "facebook" : _URL = facebookBase+"u="+hostUrl;                                                        break;
+                case "twitter"  : _URL = twitterBase+"text="+title+excerpt+"&url="+hostUrl;                                break;
+            }
+            window.open(_URL);
+        };
+    </script>
+</div>
+                
+                </div>
+            
+            <div class="footer-tag clearfix">
+                <div class="pull-left">
+                <i class="fa fa-tags"></i>
+                    <a class="tag-none-link" href="/tags/hexo/" rel="tag">hexo</a>
+                </div>
+                <div class="pull-date">
+                    <time datetime="2025-06-23T16:43:02.000Z" itemprop="dateModified">最后编辑：2025-06-24</time>
+                </div>
+            </div>
+        </footer>
+    </div>
+    
+        <nav class="navigation post-navigation clearfix" role="navigation">
+            
+            <div class="nav-previous clearfix">
+                <a title=" 关于2233看板娘的配置方法" href="/2025/06/21/2025-06-21-看板娘配置/">&lt; 上一篇</a>
+            </div>
+            
+            
+            <div class="nav-next clearfix">
+                <a title=" 通过MCP协议令AI控制电脑" href="/2025/06/23/嵌入式小智机器人-通过MCP协议令AI控制你的电脑/">下一篇 &gt;</a>
+            </div>
+            
+        </nav>
+    
+    
+        <div id="v-comments" class="post-comments bg-image"></div>
+<script>
+    var load_comm = () => {
+        const init = () => {
+            new Valine({
+                el: '#v-comments',
+                appId: 'T8XpwvdOu85FCBOBqGDFoBr5-gzGzoHsz',
+                appKey: 'Jd2fqhSfAl8XJb2qdLMskVXy',
+                visitor: true,
+                enableQQ: false,
+                path: '/2025/06/22/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%8A%98%E8%85%BE-%E4%B8%9D%E6%BB%91%E7%9A%84Hexo%E5%B7%A5%E4%BD%9C%E6%B5%81/'
+            });
+        }
+        if (typeof Valine === 'undefined') {
+            const src = '/vendors/valine@1.4.18/dist/Valine.min.js';
+            $.getScript(src, init);
+        } else {
+            init();
+        }
+    };
+</script>
+<noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="https://valine.js.org/">comments powered by Valine.</a></noscript>
+
+    
+</article>
+
+        
+
+            </section>
+
+        
+
+                
+            
+
+<section id="kratos-widget-area" class="col-md-4 hidden-xs hidden-sm">
+    <!-- 文章和页面根据splitter来分割，没有的话就从头开始设置为sticky -->
+    
+    
+                <aside id="krw-about" class="widget widget-kratos-about clearfix">
+    <div class="photo-background"></div>
+    <div class="photo-wrapper clearfix">
+        <div class="photo-wrapper-tip text-center">
+            <img class="about-photo" src="/images/141054658.jpg" loading="lazy" decoding="auto" />
+        </div>
+    </div>
+    <div class="textwidget">
+        <p class="text-center">A person who is gradually sinking into the abyss, lost and confused, and a person who wants to create their own dream world</p>
+    </div>
+    <div class="site-meta">
+        <a class="meta-item" href="/archives/">
+            <span class="title">
+                文章
+            </span>
+            <span class="count">
+                19
+            </span>
+        </a>
+        <a class="meta-item" href="/categories/">
+            <span class="title">
+                分类
+            </span>
+            <span class="count">
+                9
+            </span>
+        </a>
+        <a class="meta-item" href="/tags/">
+            <span class="title">
+                标签
+            </span>
+            <span class="count">
+                21
+            </span>
+        </a>
+    </div>
+</aside>
+            
+                    <div class="sticky-area">
+                
+                
+  <aside id="krw-categories" class="widget widget-kratos-categories clearfix">
+    <h4 class="widget-title"><i class="fa fa-folder"></i>分类目录</h4>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%A4%A9%E6%96%87/">天文</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%AF%8F%E6%97%A5%E8%AF%9D%E9%A2%98/">每日话题</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%94%9F%E6%B4%BB/">生活</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A4%E7%9F%A5%E6%8E%A2%E7%B4%A2/">认知探索</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%B5%84%E6%BA%90/">资源</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%97%B2%E8%81%8A/">闲聊</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%9A%8F%E7%AC%94/">随笔</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%9F%B3%E4%B9%90/">音乐</a><span class="category-list-count">1</span></li></ul>
+  </aside>
+
+
+            
+                
+  <aside id="krw-tags" class="widget widget-kratos-tags clearfix">
+    <h4 class="widget-title"><i class="fa fa-tags"></i>标签聚合</h4>
+      <div class="tag-clouds">
+        <a href="/tags/2233/" style="font-size: 0.6em;">2233</a> <a href="/tags/AI/" style="font-size: 0.6em;">AI</a> <a href="/tags/Butterfly-%E4%B8%BB%E9%A2%98/" style="font-size: 0.6em;">Butterfly 主题</a> <a href="/tags/Hexo/" style="font-size: 0.6em;">Hexo</a> <a href="/tags/MCP/" style="font-size: 0.6em;">MCP</a> <a href="/tags/fl-studio/" style="font-size: 0.6em;">fl studio</a> <a href="/tags/giscus/" style="font-size: 0.6em;">giscus</a> <a href="/tags/github/" style="font-size: 0.6em;">github</a> <a href="/tags/hexo/" style="font-size: 0.8em;">hexo</a> <a href="/tags/waline/" style="font-size: 0.6em;">waline</a> <a href="/tags/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/" style="font-size: 0.6em;">个人博客</a> <a href="/tags/%E4%B9%90%E7%90%86/" style="font-size: 0.6em;">乐理</a> <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" style="font-size: 0.7em;">人工智能</a> <a href="/tags/%E5%B0%8F%E6%99%BAAI/" style="font-size: 0.6em;">小智AI</a> <a href="/tags/%E6%97%A5%E5%B8%B8/" style="font-size: 0.6em;">日常</a> <a href="/tags/%E6%97%A5%E8%AE%B0/" style="font-size: 0.6em;">日记</a> <a href="/tags/%E6%9C%9B%E8%BF%9C%E9%95%9C/" style="font-size: 0.6em;">望远镜</a> <a href="/tags/%E7%94%9F%E6%B4%BB/" style="font-size: 0.6em;">生活</a>
+      </div>
+  </aside>
+
+            
+                
+  <aside id="krw-posts" class="widget widget-kratos-posts">
+  <h4 class="widget-title"><i class="fa fa-file"></i>最新文章</h4>
+  <div class="tab-content">
+      <ul class="list-group">
+        
+        
+          
+          
+            <a class="list-group-item" href="/2025/08/08/%E4%B8%AA%E4%BA%BA%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%BF%E7%94%A8%E8%A7%82/"><i class="fa  fa-book"></i> 个人计算机使用观</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2025/08/08/%E5%9C%9F%E8%B1%86%E4%BD%ACba%E6%BC%AB%E7%94%BB%E5%AE%8C%E6%95%B4%E8%B5%84%E6%BA%90/"><i class="fa  fa-book"></i> 土豆佬ba漫画日文完整</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2025/07/29/7-29-%E8%AE%A4%E7%9F%A5%E6%8E%A2%E7%B4%A2/"><i class="fa  fa-book"></i> 7/29 认知探索</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2025/07/24/%E5%A4%A9%E6%96%87%E8%AE%B0%E5%BD%95%20%E7%89%9B%E9%A1%BF%E5%8F%8D%E5%B0%84%E5%BC%8F%E6%9C%9B%E8%BF%9C%E9%95%9C/"><i class="fa  fa-book"></i> 天文记录 | 牛顿反射式望远镜</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2025/07/15/%E4%BA%B2%E5%AD%90%E5%85%B3%E7%B3%BB%E4%B8%8E%E8%B4%A3%E4%BB%BB/"><i class="fa  fa-book"></i> 亲子关系与责任</a>
+            
+          
+        
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+      </ul>
+  </div>
+  </aside>
+
+            
+    </div>
+</section>
+        
+        </div>
+    </div>
+</div>
+<footer>
+    <div id="footer"  class="ap-lrc"  >
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3 footer-list text-center">
+                    <ul class="kratos-social-icons">
+                        <!-- Keep for compatibility -->
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <!-- New links -->
+                        
+                    </ul>
+                    <ul class="kratos-copyright">
+                        <div>
+                            <li>&copy; 2025 Tokepson blog's 版权所有.</li>
+                            <li>本站已运行<span id="span_dt">Loading...</span></li>
+                        </div>
+                        <div>
+                            <li>Theme <a href="https://github.com/Candinya/Kratos-Rebirth" target="_blank">Kratos:Rebirth</a></li>
+                            <li>Site built with&nbsp;<i class="fa fa-heart throb" style="color:#d43f57"></i>&nbsp;by tokepson.</li>
+                        </div>
+                        <div>
+                            <li>Powered by <a href="https://hexo.io" target="_blank" rel="nofollow">Hexo</a></li>
+                            <li>Hosted on <a href="https://github.io" target="_blank">Github Pages</a></li>
+                        </div>
+                        <div>
+                            
+                            
+                        </div>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="kr-tool text-center">
+            <div class="tool">
+                
+                    <div class="box search-box">
+                        <a href="/search/">
+                            <span class="fa fa-search"></span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="box theme-box" id="darkmode-switch">
+                        <span class="fa fa-adjust"></span>
+                    </div>
+                
+                
+                    <div class="box theme-box" id="snow-switch">
+                        <span class="fa fa-snowflake-o"></span>
+                    </div>
+                
+                
+            </div>
+            <div class="box gotop-box">
+                <span class="fa fa-chevron-up"></span>
+            </div>
+        </div>
+    </div>
+</footer>
+</div>
+</div>
+
+        <script defer src="/vendors/bootstrap@3.3.4/dist/js/bootstrap.min.js"></script>
+<script defer src="/vendors/nprogress@0.2.0/nprogress.js"></script>
+<script>
+    if (!window.kr) {
+        window.kr = {};
+    }
+    window.kr.notMobile = (!(navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i)));
+    window.kr.siteRoot = "/";
+</script>
+
+    <div>
+        <canvas id="snow"></canvas>
+        <script async src="/js/snow.min.js"></script>
+    </div>
+
+
+    <script async src="/js/candy.min.js"></script>
+
+
+
+    <script defer src="/vendors/aplayer@1.10.1/dist/APlayer.min.js"></script>
+    
+    <script defer src="/vendors/meting@2.0.1/dist/Meting.min.js"></script>
+    <meting-js
+        server="netease"
+        type="playlist"
+        id="3204190542"
+        order="random"
+        fixed="true"
+    >
+    </meting-js>
+
+
+
+    <script defer src="/vendors/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+<script defer src="/js/kratosr.min.js"></script>
+<script defer src="/js/pjax.min.js"></script>
+
+    <script defer src="/vendors/layui-src@2.5.5/dist/layui.all.js"></script>
+
+
+
+<!-- Extra support for third-party plguins  -->
+
+
+
+        
+        <!-- 看板娘 -->
+        <!-- waifu-tips.js 依赖 JQuery 库 -->
+        <script src="/assets/jquery.min.js?v=3.3.1"></script>
+        
+        <!-- 实现拖动效果，需引入 JQuery UI -->
+        <script src="/assets/jquery-ui.min.js"></script>
+
+        <!-- 使用 autoload.js 引入看板娘 -->
+        <script src="/assets/autoload.js?v=1.4.2"></script>
+        <script src="/assets/waifu-tips.js?v=1.4.2"></script>
+        <script src="/assets/live2d.js"></script>
+        
+        <script type="text/javascript">
+            live2d_settings['modelId'] = "3";
+            live2d_settings['modelTexturesId'] = "0";
+            live2d_settings['modelStorage'] = "true";
+            live2d_settings['modelRandMode'] = "switch";
+            live2d_settings['modelTexturesRandMode'] = "rand";
+            live2d_settings['waifuSize'] = "280x250";
+            live2d_settings['waifuEdgeSide'] = "left:1050";
+            live2d_settings['waifuEdgeTop'] = "top:150";
+            live2d_settings['waifuDraggable'] = "axis-x";
+            live2d_settings['waifuDraggableRevert'] = "true";
+            live2d_settings['l2dVersion'] = "1.4.2";
+            live2d_settings['l2dVerDate'] = "2018.11.12";
+            live2d_settings['homePageUrl'] = "";
+            live2d_settings['aboutPageUrl'] = "https://www.fghrsh.net/post/123.html";
+
+            initModel("/assets/waifu-tips.json")
+        </script>
+        
+    </body>
+</html>

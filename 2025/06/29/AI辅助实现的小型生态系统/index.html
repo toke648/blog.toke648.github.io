@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="zh">
+    <head>
+  <!-- 元数据 -->
+  <meta charset="utf-8">
+  
+  
+  <title>AI辅助实现的小型生态系统 | Tokepson blog&#39;s</title>
+  
+  <meta name="author" content="tokepson" />
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="robots" content="index,follow" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <meta name="format-detection" content="telphone=no, email=no" />
+  
+    <meta name="keywords" content="人工智能" />
+  
+  <meta name="description" content="AI辅助实现的小型生态系统 设计：每个个体都有自己的行为逻辑，并不共享学习到的内容，但克隆体能够继承被克隆个体所学习到的经验，并且每个个体都有小概率获得突变出新的行为逻辑。克隆体，生成在被克隆体的旁边，并继承被克隆体的行为逻辑。   **阳光能量：**0.05  **植物：**高生命容易繁衍，但有捕食者的威胁（原定位是绿藻的）个体数量：200生命值：8消耗能量：-0.03获取能量：+0.05克隆能">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AI辅助实现的小型生态系统">
+<meta property="og:url" content="http://gannia.top/2025/06/29/AI%E8%BE%85%E5%8A%A9%E5%AE%9E%E7%8E%B0%E7%9A%84%E5%B0%8F%E5%9E%8B%E7%94%9F%E6%80%81%E7%B3%BB%E7%BB%9F/index.html">
+<meta property="og:site_name" content="Tokepson blog&#39;s">
+<meta property="og:description" content="AI辅助实现的小型生态系统 设计：每个个体都有自己的行为逻辑，并不共享学习到的内容，但克隆体能够继承被克隆个体所学习到的经验，并且每个个体都有小概率获得突变出新的行为逻辑。克隆体，生成在被克隆体的旁边，并继承被克隆体的行为逻辑。   **阳光能量：**0.05  **植物：**高生命容易繁衍，但有捕食者的威胁（原定位是绿藻的）个体数量：200生命值：8消耗能量：-0.03获取能量：+0.05克隆能">
+<meta property="og:locale">
+<meta property="og:image" content="http://gannia.top/images/pasted-29.png">
+<meta property="og:image" content="http://gannia.top/images/pasted-30.png">
+<meta property="og:image" content="http://gannia.top/images/pasted-27.png">
+<meta property="og:image" content="http://gannia.top/images/pasted-28.png">
+<meta property="article:published_time" content="2025-06-29T13:45:00.000Z">
+<meta property="article:modified_time" content="2025-08-07T18:41:34.000Z">
+<meta property="article:author" content="tokepson">
+<meta property="article:tag" content="人工智能">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://gannia.top/images/pasted-29.png">
+  
+  <!-- 站点验证相关 -->
+  
+    
+    
+    
+  
+  <!-- 样式表文件 -->
+  <link rel="stylesheet" id="kratos-css" href="/css/kratosr.min.css" media="all"></script>
+  
+    <link rel="stylesheet" id="darkmode-css" href="/css/kr-color-dark.min.css" media="(prefers-color-scheme: dark)"></script>
+    <script src="/js/kr-dark.min.js"></script>
+  
+  
+    <link rel="stylesheet" id="highlight-css" href="/css/highlight/night-eighties.min.css" media="all"></script>
+  
+  <link rel="stylesheet" id="fontawe-css" href="/vendors/font-awesome@4.7.0/css/font-awesome.min.css" media="all"></script>
+  <link rel="stylesheet" id="nprogress-css" href="/vendors/nprogress@0.2.0/nprogress.css" media="all"></script>
+  
+  
+    <link rel="stylesheet" href="/vendors/aplayer@1.10.1/dist/APlayer.min.css"></script>
+  
+  
+    <link rel="stylesheet" href="/vendors/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css"></script>
+  
+  <!-- 不得不预先加载的一些JS文件 -->
+  <script src="/vendors/jquery@3.6.0/dist/jquery.min.js"></script>
+  
+    <script src="/vendors/qrcode_js@1.0.0/qrcode.min.js"></script>
+  
+  
+  <style>
+    
+      .kratos-cover.kratos-cover-2 {
+        background-image: url('/images/banner.webp');
+      }
+    
+    
+      @media(min-width:768px) {
+        body.custom-background {
+          background-image: url('/images/bg.webp');
+        }
+      }
+    
+  </style>
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+    <body class="custom-background">
+        <div id="kratos-wrapper">
+    <div id="kratos-page">
+        <div id="kratos-header">
+            <header id="kratos-desktop-topnav" class="kratos-topnav">
+                <div class="container">
+                    <div class="nav-header">
+                        <nav id="kratos-menu-wrap">
+                            <ul id="kratos-primary-menu" class="sf-menu">
+                                
+                                    
+                                    
+                                        
+                                            <li><a href="/"><i class="fa fa-home"></i>首页</a></li>
+                                        
+                                    
+                                        
+                                            <li><a href="/about/"><i class="fa fa-user"></i>关于</a></li>
+                                        
+                                    
+                                        
+                                            <li><a href="/resources/"><i class="fa fa-folder-open"></i>资源</a></li>
+                                        
+                                    
+                                        
+                                            <li><a href="/library/"><i class="fa fa-book"></i>图书馆</a></li>
+                                        
+                                    
+                                        
+                                            <li><a href="/talk/"><i class="fa fa-comments"></i>讨论区</a></li>
+                                        
+                                    
+                                        
+                                            <li>
+                                                <a><i class="fa fa-list"></i>列表</a>
+                                                <ul class="sub-menu">
+                                                    
+                                                        
+                                                    
+                                                        
+                                                            <li><a href="/music/"><i class="fa fa-music"></i>音乐</a></li>
+                                                        
+                                                    
+                                                        
+                                                            <li><a href="/drawing/"><i class="fa fa-paint-brush"></i>绘画</a></li>
+                                                        
+                                                    
+                                                        
+                                                            <li><a href="/photography/"><i class="fa fa-camera"></i>摄影</a></li>
+                                                        
+                                                    
+                                                        
+                                                            <li><a href="/movies/"><i class="fa fa-film"></i>电影</a></li>
+                                                        
+                                                    
+                                                </ul>
+                                            </li>
+                                        
+                                    
+                                        
+                                            <li><a href="/links/"><i class="fa fa-link"></i>友联</a></li>
+                                        
+                                    
+                                        
+                                            <li><a href="/share/"><i class="fa fa-share-alt"></i>分享</a></li>
+                                        
+                                    
+                                        
+                                            <li>
+                                                <a><i class="fa fa-external-link-alt"></i>外部链接</a>
+                                                <ul class="sub-menu">
+                                                    
+                                                        
+                                                    
+                                                        
+                                                            <li><a target="_blank" rel="noopener" href="https://candinya.com"><i class="fa fa-blog"></i>作者博客</a></li>
+                                                        
+                                                    
+                                                        
+                                                            <li><a target="_blank" rel="noopener" href="https://github.com/Candinya/Kratos-Rebirth"><i class="fa fa-code-branch"></i>项目链接</a></li>
+                                                        
+                                                    
+                                                </ul>
+                                            </li>
+                                        
+                                    
+                                
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </header>
+            <header id="kratos-mobile-topnav" class="kratos-topnav">
+                <div class="container">
+                    <div class="color-logo"><a href="/">Tokepson blog&#39;s</a></div>
+                    <div class="nav-toggle">
+                        <a class="kratos-nav-toggle js-kratos-nav-toggle">
+                            <i></i>
+                        </a>
+                    </div>
+                </div>
+            </header>
+        </div>
+        <div class="kratos-start kratos-hero-2">
+            <!-- <div class="kratos-overlay"></div> -->
+            <div class="kratos-cover kratos-cover-2 text-center">
+                <div class="desc desc2 animate-box">
+                    <a href="/">
+                        <h2>Tokepson blog&#39;s</h2> <br />
+                        <span>Tokepson blog&#39;s</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div id="kratos-blog-post">
+            <div class="container">
+                <div id="main" class="row">
+                    
+
+        
+
+            <section class="col-md-8">
+
+        
+
+            <article itemscope itemtype="https://schema.org/Article">
+    
+    <link itemprop="mainEntityOfPage" href="http://gannia.top/2025/06/29/AI%E8%BE%85%E5%8A%A9%E5%AE%9E%E7%8E%B0%E7%9A%84%E5%B0%8F%E5%9E%8B%E7%94%9F%E6%80%81%E7%B3%BB%E7%BB%9F/">
+    <div class="kratos-hentry kratos-post-inner clearfix">
+        <header class="kratos-entry-header">
+            
+                <h1 class="kratos-entry-title text-center" itemprop="name headline">AI辅助实现的小型生态系统</h1>
+            
+            
+            <ul class="kratos-post-meta text-center">
+                <li><time datetime="2025-06-29T13:45:00.000Z" itemprop="datePublished"><i class="fa fa-calendar"></i> 2025-06-29</time></li>
+                <li itemprop="author" itemscope itemtype="https://schema.org/Person">
+                    <i class="fa fa-user"></i> 作者 <span itemprop="name">Tokepson</span>
+                </li>
+                
+                    <li>
+                        <i class="fa fa-edit"></i> 
+                        
+                        
+                            ~10.99K
+                        
+                        字
+                    </li>
+                
+                
+                    <li id="/2025/06/29/AI%E8%BE%85%E5%8A%A9%E5%AE%9E%E7%8E%B0%E7%9A%84%E5%B0%8F%E5%9E%8B%E7%94%9F%E6%80%81%E7%B3%BB%E7%BB%9F/" class="leancloud_visitors" data-flag-title="AI辅助实现的小型生态系统">
+                        <i class="fa fa-eye"></i>
+                        <span class="leancloud-visitors-count"> </span> 次阅读
+                    </li>
+                
+            </ul>
+        </header>
+        <div class="kratos-post-content">
+            
+            <div id="expire-alert" class="alert alert-warning hidden" role="alert">
+                <div class="icon"><i class="fa fa-warning"></i></div>
+                <div class="text"><p>本文最后编辑于 <time datetime="1754592094000"></time> 前，其中的内容可能需要更新。</p></div>
+            </div>
+            
+            
+            
+            <hr />
+            <div itemprop="articleBody"><h1 id="AI辅助实现的小型生态系统"><a href="#AI辅助实现的小型生态系统" class="headerlink" title="AI辅助实现的小型生态系统"></a>AI辅助实现的小型生态系统</h1><blockquote>
+<p>设计：<br>每个个体都有自己的行为逻辑，并不共享学习到的内容，但克隆体能够继承被克隆个体所学习到的经验，并且每个个体都有小概率获得突变出新的行为逻辑。<br>克隆体，生成在被克隆体的旁边，并继承被克隆体的行为逻辑。</p>
+</blockquote>
+<ul>
+<li><p>**阳光能量：**0.05</p>
+</li>
+<li><p>**植物：**高生命容易繁衍，但有捕食者的威胁（原定位是绿藻的）<br>个体数量：200<br>生命值：8<br>消耗能量：-0.03<br>获取能量：+0.05<br>克隆能量：25<br>克隆花费：20</p>
+</li>
+<li><p>**捕食者：**不容易繁衍但是，高强度捕猎不到猎物容易死亡（留下了的基本都是生存能力强者）<br>个体数量：10<br>生命值：10<br>消耗能量：-0.05<br>捕猎能量：+1.0<br>奖励能量：1<br>克隆能量：30<br>克隆花费：20</p>
+</li>
+<li><p><strong>我一开始很难想象，居然能有实现 实时训练+实时学习的方法</strong></p>
+</li>
+</ul>
+<p><img src="/images/pasted-29.png" alt="upload successful"></p>
+<ul>
+<li>如果是这样的化，那么我的另一个构想也是理论上能够实现的。。。<blockquote>
+<p>一个通过输入噪声实现的 《生成式认知主体过程》<br>我觉得这个问题能够解释 “我是从哪来的？”这个问题<br>我认为 认知实际上是从“我”的主体上诞生的，所有输入都经过“我”这个主体，因此“我”诞生了</p>
+</blockquote>
+</li>
+</ul>
+<p><img src="/images/pasted-30.png" alt="upload successful"></p>
+<p>详细的话，等后面的文章再详细阐述，通过思考了很多年我试图吧这些想法写成一篇具体的文章，因此做了一个关于“我的观点”的草稿。。。</p>
+<hr>
+<h3 id="代码实现（复盘）"><a href="#代码实现（复盘）" class="headerlink" title="代码实现（复盘）"></a>代码实现（复盘）</h3><p>俗话说的好（好吧，是我的经验而言）：想要真正的认识到、学习到知识，至少要亲身经历过。。。<br>（代码是AI辅助实现的，我只是提出想法和改进方向，但实用性感觉不怎么样）</p>
+<ul>
+<li>定义环境</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 平衡生态系统 v2（捕食者优化 + 感知扩展 + 克隆抑制）</span></span><br><span class="line"><span class="keyword">import</span> pygame</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">import</span> torch.nn <span class="keyword">as</span> nn</span><br><span class="line"><span class="keyword">import</span> torch.nn.functional <span class="keyword">as</span> F</span><br><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="keyword">from</span> copy <span class="keyword">import</span> deepcopy</span><br><span class="line"></span><br><span class="line">WIDTH, HEIGHT = <span class="number">700</span>, <span class="number">700</span> <span class="comment"># 窗口大小</span></span><br><span class="line">N = <span class="number">70</span> <span class="comment"># 地图大小</span></span><br><span class="line">CELL_SIZE = WIDTH // N</span><br><span class="line">pygame.init() <span class="comment"># 初始化pygame</span></span><br><span class="line">screen = pygame.display.set_mode((WIDTH, HEIGHT))</span><br><span class="line">pygame.display.set_caption(<span class="string">&quot;Ecosystem&quot;</span>)</span><br><span class="line"></span><br><span class="line">x, y = np.linspace(<span class="number">0</span>, N - <span class="number">1</span>, N), np.linspace(<span class="number">0</span>, N - <span class="number">1</span>, N) <span class="comment"># 生成网格</span></span><br><span class="line">X, Y = np.meshgrid(x, y)</span><br><span class="line">cx, sigma, move_speed = N // <span class="number">2</span>, N / <span class="number">5</span>, <span class="number">0.1</span></span><br><span class="line">MOVES = [[<span class="number">1</span>, <span class="number">0</span>], [-<span class="number">1</span>, <span class="number">0</span>], [<span class="number">0</span>, <span class="number">1</span>], [<span class="number">0</span>, -<span class="number">1</span>]] <span class="comment"># 移动方向</span></span><br><span class="line">device = torch.device(<span class="string">&#x27;cpu&#x27;</span>) <span class="comment"># 设备选择cpu/gpu</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>初始化（定义模型）</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 建立神经网络模型</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">PolicyNet</span>(nn.Module): <span class="comment"># 策略网络</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    总的来说就是：输入是当前状态，输出是下一步的动作</span></span><br><span class="line"><span class="string">    分别输入四个动作up、down、left、right，然后通过神经网络进行预测，并返回概率(softmax)最大的动作。</span></span><br><span class="line"><span class="string">    这个神经网络模型的话，属于策略网络，用于预测下一个动作。</span></span><br><span class="line"><span class="string">    算是一个简单的神经网络，输入为4维向量，输出为4维向量，然后通过softmax进行概率归一化，返回概率最大的动作。</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="built_in">super</span>().__init__()</span><br><span class="line">        <span class="variable language_">self</span>.fc1 = nn.Linear(<span class="number">9</span>, <span class="number">32</span>) <span class="comment"># 输入9个特征，输出4个动作</span></span><br><span class="line">        <span class="variable language_">self</span>.fc2 = nn.Linear(<span class="number">32</span>, <span class="number">4</span>) <span class="comment"># 隐藏层32个神经元</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">forward</span>(<span class="params">self, x</span>):</span><br><span class="line">        x = F.relu(<span class="variable language_">self</span>.fc1(x)) <span class="comment"># 激活函数</span></span><br><span class="line">        <span class="keyword">return</span> F.softmax(<span class="variable language_">self</span>.fc2(x), dim=-<span class="number">1</span>) <span class="comment"># 输出动作概率</span></span><br><span class="line">    </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建代理（植物/捕食者）</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Agent</span>:</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    代理类，继承自nn.Module</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, kind=<span class="string">&#x27;plant&#x27;</span>, parent=<span class="literal">None</span></span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        代理初始化</span></span><br><span class="line"><span class="string">        kind: 代理类型</span></span><br><span class="line"><span class="string">        parent: 父代理</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        <span class="variable language_">self</span>.kind = kind <span class="comment"># 植物/捕食者</span></span><br><span class="line">        <span class="variable language_">self</span>.pos = [np.random.randint(N), np.random.randint(N)] <span class="comment"># 随机位置</span></span><br><span class="line">        <span class="variable language_">self</span>.nutrition = <span class="number">8.0</span> <span class="keyword">if</span> kind == <span class="string">&#x27;plant&#x27;</span> <span class="keyword">else</span> <span class="number">15.0</span> <span class="comment"># 初始营养</span></span><br><span class="line">        <span class="variable language_">self</span>.alive = <span class="literal">True</span> <span class="comment"># 代理是否存活</span></span><br><span class="line">        <span class="variable language_">self</span>.model = deepcopy(parent.model) <span class="keyword">if</span> parent <span class="keyword">else</span> PolicyNet().to(device) <span class="comment"># 从父代理中复制模型，模型为自定义的策略网络模型，输入4个参数，输出4个动作概率</span></span><br><span class="line">        <span class="keyword">if</span> parent: <span class="comment"># 如果有父代理，则进行变异</span></span><br><span class="line">            <span class="variable language_">self</span>.mutate()</span><br><span class="line">        <span class="variable language_">self</span>.traj = []</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 代理的决策</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">mutate</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="keyword">with</span> torch.no_grad(): <span class="comment"># 禁用梯度计算</span></span><br><span class="line">            <span class="keyword">for</span> param <span class="keyword">in</span> <span class="variable language_">self</span>.model.parameters():</span><br><span class="line">                <span class="keyword">if</span> random.random() &lt; <span class="number">0.1</span>: <span class="comment"># 随机突变（表象为做出随机行为）</span></span><br><span class="line">                    param.add_(torch.randn_like(param) * <span class="number">0.03</span>) <span class="comment"># 添加一个随机向量</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 代理状态</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">get_state</span>(<span class="params">self, agents, nutrition_field</span>):</span><br><span class="line">        x, y = <span class="variable language_">self</span>.pos <span class="comment"># 获取代理位置</span></span><br><span class="line">        vals = []</span><br><span class="line">        <span class="keyword">for</span> dx <span class="keyword">in</span> [-<span class="number">1</span>, <span class="number">0</span>, <span class="number">1</span>]:</span><br><span class="line">            <span class="keyword">for</span> dy <span class="keyword">in</span> [-<span class="number">1</span>, <span class="number">0</span>, <span class="number">1</span>]:</span><br><span class="line">                nx, ny = x + dx, y + dy</span><br><span class="line">                <span class="keyword">if</span> <span class="number">0</span> &lt;= nx &lt; N <span class="keyword">and</span> <span class="number">0</span> &lt;= ny &lt; N:</span><br><span class="line">                    <span class="keyword">if</span> <span class="variable language_">self</span>.kind == <span class="string">&#x27;plant&#x27;</span>:</span><br><span class="line">                        vals.append(nutrition_field[ny, nx])</span><br><span class="line">                    <span class="keyword">else</span>:</span><br><span class="line">                        vals.append(<span class="built_in">sum</span>(<span class="number">1</span> <span class="keyword">for</span> a <span class="keyword">in</span> agents <span class="keyword">if</span> a.kind == <span class="string">&#x27;plant&#x27;</span> <span class="keyword">and</span> a.pos == [nx, ny]))</span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    vals.append(<span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> torch.tensor(vals, dtype=torch.float32, device=device)</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 获取当前位置的周围格子的信息</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">act</span>(<span class="params">self, agents, nutrition_field</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        获取当前位置的周围格子的信息</span></span><br><span class="line"><span class="string">        :param agents: 当前位置的周围格子的信息</span></span><br><span class="line"><span class="string">        :param nutrition_field: 当前位置的周围格子的信息</span></span><br><span class="line"><span class="string">        :return: 当前位置的周围格子的信息</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        state = <span class="variable language_">self</span>.get_state(agents, nutrition_field).unsqueeze(<span class="number">0</span>) <span class="comment"># 添加一个维度</span></span><br><span class="line">        probs = <span class="variable language_">self</span>.model(state).squeeze(<span class="number">0</span>) <span class="comment"># 去掉一个维度</span></span><br><span class="line">        dist = torch.distributions.Categorical(probs) <span class="comment"># 创建概率分布</span></span><br><span class="line">        action = dist.sample()</span><br><span class="line">        log_prob = dist.log_prob(action)</span><br><span class="line">        dx, dy = MOVES[action.item()]</span><br><span class="line">        <span class="variable language_">self</span>.pos[<span class="number">0</span>] = <span class="built_in">max</span>(<span class="number">0</span>, <span class="built_in">min</span>(N - <span class="number">1</span>, <span class="variable language_">self</span>.pos[<span class="number">0</span>] + dx))</span><br><span class="line">        <span class="variable language_">self</span>.pos[<span class="number">1</span>] = <span class="built_in">max</span>(<span class="number">0</span>, <span class="built_in">min</span>(N - <span class="number">1</span>, <span class="variable language_">self</span>.pos[<span class="number">1</span>] + dy))</span><br><span class="line">        <span class="variable language_">self</span>.traj.append(<span class="built_in">tuple</span>(<span class="variable language_">self</span>.pos))</span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">len</span>(<span class="variable language_">self</span>.traj) &gt; <span class="number">10</span>:</span><br><span class="line">            <span class="variable language_">self</span>.traj.pop(<span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> log_prob</span><br><span class="line"></span><br><span class="line"><span class="comment"># 网格颜色</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">field_color</span>(<span class="params">value</span>):</span><br><span class="line">    v = <span class="built_in">max</span>(<span class="number">0</span>, <span class="built_in">min</span>(value / <span class="number">10</span>, <span class="number">1</span>))</span><br><span class="line">    <span class="keyword">return</span> (<span class="built_in">int</span>(<span class="number">255</span> * v), <span class="built_in">int</span>(<span class="number">165</span> * v), <span class="built_in">int</span>(<span class="number">255</span> * (<span class="number">1</span> - v)))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取周围营养</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">can_clone</span>(<span class="params">agent, agents</span>):</span><br><span class="line">    cx, cy = agent.pos <span class="comment"># 当前位置</span></span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">sum</span>(<span class="number">1</span> <span class="keyword">for</span> a <span class="keyword">in</span> agents <span class="keyword">if</span> <span class="built_in">abs</span>(a.pos[<span class="number">0</span>] - cx) &lt;= <span class="number">1</span> <span class="keyword">and</span> <span class="built_in">abs</span>(a.pos[<span class="number">1</span>] - cy) &lt;= <span class="number">1</span>) &lt; <span class="number">6</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Agent类在这里被使用，用于创建Agent对象</span></span><br><span class="line">agents = [Agent(<span class="string">&#x27;plant&#x27;</span>) <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">200</span>)] + [Agent(<span class="string">&#x27;predator&#x27;</span>) <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">10</span>)] <span class="comment"># 初始化 植物：200/捕食者：10</span></span><br><span class="line">clock = pygame.time.Clock() <span class="comment"># 时钟</span></span><br><span class="line">MAX_AGENT = <span class="number">400</span> <span class="comment"># 最大数量</span></span><br><span class="line">running, steps = <span class="literal">True</span>, <span class="number">0</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>循环主体</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> running: <span class="comment"># 运行</span></span><br><span class="line">    clock.tick(<span class="number">15</span>)</span><br><span class="line">    steps += <span class="number">1</span></span><br><span class="line">    <span class="keyword">for</span> event <span class="keyword">in</span> pygame.event.get(): <span class="comment"># 获取事件</span></span><br><span class="line">        <span class="keyword">if</span> event.<span class="built_in">type</span> == pygame.QUIT: <span class="comment"># 退出</span></span><br><span class="line">            running = <span class="literal">False</span></span><br><span class="line"></span><br><span class="line">    cx = (cx + move_speed) % N <span class="comment"># 捕食者移动</span></span><br><span class="line">    nutrition_field = np.exp(-((X - cx) ** <span class="number">2</span> + (Y - cx) ** <span class="number">2</span>) / (<span class="number">2</span> * sigma ** <span class="number">2</span>)) * <span class="number">10.0</span> <span class="comment"># (辐射)营养源</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> steps % <span class="number">100</span> == <span class="number">0</span>: <span class="comment"># 每100步</span></span><br><span class="line">        np_, pr_ = <span class="built_in">sum</span>(a.kind == <span class="string">&#x27;plant&#x27;</span> <span class="keyword">for</span> a <span class="keyword">in</span> agents), <span class="built_in">sum</span>(a.kind == <span class="string">&#x27;predator&#x27;</span> <span class="keyword">for</span> a <span class="keyword">in</span> agents) <span class="comment"># 统计</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;[Step <span class="subst">&#123;steps&#125;</span>] Plants: <span class="subst">&#123;np_&#125;</span>, Predators: <span class="subst">&#123;pr_&#125;</span>&quot;</span>) <span class="comment"># 输出</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(N):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(N):</span><br><span class="line">            pygame.draw.rect(screen, field_color(nutrition_field[j, i]),</span><br><span class="line">                             pygame.Rect(i * CELL_SIZE, j * CELL_SIZE, CELL_SIZE, CELL_SIZE)) <span class="comment"># 画背景</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> agent <span class="keyword">in</span> agents: <span class="comment"># 遍历个体</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> agent.alive: <span class="comment"># 如果个体已死亡，则跳过</span></span><br><span class="line">            <span class="keyword">continue</span></span><br><span class="line"></span><br><span class="line">        log_prob = agent.act(agents, nutrition_field) <span class="comment"># 获取个体的决策概率</span></span><br><span class="line">        reward = <span class="number">0</span> <span class="comment"># 初始化奖励</span></span><br><span class="line">        <span class="keyword">if</span> agent.kind == <span class="string">&#x27;plant&#x27;</span>: <span class="comment"># 如果是植物</span></span><br><span class="line">            agent.nutrition += nutrition_field[agent.pos[<span class="number">1</span>], agent.pos[<span class="number">0</span>]] * <span class="number">0.05</span> <span class="comment"># 植物获取的能量为0.05</span></span><br><span class="line">            agent.nutrition -= <span class="number">0.03</span> <span class="comment"># 植物消耗的能量</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            agent.nutrition -= <span class="number">0.03</span> <span class="comment"># 捕食者消耗的能量</span></span><br><span class="line">            prey = <span class="built_in">next</span>((a <span class="keyword">for</span> a <span class="keyword">in</span> agents <span class="keyword">if</span> a.kind == <span class="string">&#x27;plant&#x27;</span> <span class="keyword">and</span> a.pos == agent.pos <span class="keyword">and</span> a.alive), <span class="literal">None</span>) <span class="comment"># 捕食者吃掉植物</span></span><br><span class="line">            <span class="keyword">if</span> prey:</span><br><span class="line">                prey.alive = <span class="literal">False</span> <span class="comment"># 植物死亡</span></span><br><span class="line">                agent.nutrition += <span class="number">5.0</span> <span class="comment"># 捕食者吃掉植物获得5.0点能量</span></span><br><span class="line">                reward += <span class="number">1.0</span> <span class="comment"># 捕食者吃掉植物奖励1.0分</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                near = <span class="built_in">sum</span>(<span class="number">1</span> <span class="keyword">for</span> a <span class="keyword">in</span> agents <span class="keyword">if</span> a.kind == <span class="string">&#x27;plant&#x27;</span> <span class="keyword">and</span> <span class="built_in">abs</span>(a.pos[<span class="number">0</span>]-agent.pos[<span class="number">0</span>])&lt;=<span class="number">2</span> <span class="keyword">and</span> <span class="built_in">abs</span>(a.pos[<span class="number">1</span>]-agent.pos[<span class="number">1</span>])&lt;=<span class="number">2</span>) <span class="comment"># 计算附近有多少只植物</span></span><br><span class="line">                reward += <span class="number">0.1</span> * near <span class="comment"># 捕食者附近的植物奖励0.1分</span></span><br><span class="line"></span><br><span class="line">        loss = -log_prob * reward <span class="comment"># 计算损失</span></span><br><span class="line">        agent.model.zero_grad() <span class="comment"># 清零梯度</span></span><br><span class="line">        loss.backward() <span class="comment"># 反向传播</span></span><br><span class="line">        <span class="keyword">with</span> torch.no_grad(): <span class="comment"># 梯度更新</span></span><br><span class="line">            <span class="keyword">for</span> param <span class="keyword">in</span> agent.model.parameters(): <span class="comment"># 遍历参数</span></span><br><span class="line">                param.data -= <span class="number">1e-3</span> * param.grad <span class="comment"># 更新参数</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> agent.kind == <span class="string">&#x27;plant&#x27;</span> <span class="keyword">and</span> agent.nutrition &gt;= <span class="number">25</span> <span class="keyword">and</span> can_clone(agent, agents): <span class="comment"># 如果是植物且 nutrition &gt;= 25 且可以克隆</span></span><br><span class="line">            agent.nutrition -= <span class="number">20</span> <span class="comment"># 克隆</span></span><br><span class="line">            agents.append(Agent(<span class="string">&#x27;plant&#x27;</span>, parent=agent))</span><br><span class="line">        <span class="keyword">elif</span> agent.kind == <span class="string">&#x27;predator&#x27;</span> <span class="keyword">and</span> agent.nutrition &gt;= <span class="number">30</span> <span class="keyword">and</span> can_clone(agent, agents): <span class="comment"># 如果是猎物且 nutrition &gt;= 30 且可以克隆</span></span><br><span class="line">            agent.nutrition -= <span class="number">20</span></span><br><span class="line">            agents.append(Agent(<span class="string">&#x27;predator&#x27;</span>, parent=agent))</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> agent.nutrition &lt;= <span class="number">0</span>: <span class="comment"># 如果 nutrition &lt;= 0 则死亡</span></span><br><span class="line">            agent.alive = <span class="literal">False</span></span><br><span class="line"></span><br><span class="line">    agents = [a <span class="keyword">for</span> a <span class="keyword">in</span> agents <span class="keyword">if</span> a.alive] <span class="comment"># 筛选存活的</span></span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">len</span>(agents) &gt; MAX_AGENT: <span class="comment"># 如果数量超过最大数量则</span></span><br><span class="line">        agents = <span class="built_in">sorted</span>(agents, key=<span class="keyword">lambda</span> a: a.nutrition, reverse=<span class="literal">True</span>)[:MAX_AGENT] <span class="comment"># 按 nutrition 排序</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> agent <span class="keyword">in</span> agents: <span class="comment"># 绘制</span></span><br><span class="line">        color = (<span class="number">0</span>, <span class="number">255</span>, <span class="number">0</span>) <span class="keyword">if</span> agent.kind == <span class="string">&#x27;plant&#x27;</span> <span class="keyword">else</span> (<span class="number">128</span>, <span class="number">0</span>, <span class="number">128</span>) <span class="comment"># 颜色</span></span><br><span class="line">        <span class="keyword">for</span> pt <span class="keyword">in</span> agent.traj:</span><br><span class="line">            pygame.draw.circle(screen, (<span class="number">200</span>, <span class="number">200</span>, <span class="number">200</span>),</span><br><span class="line">                               (pt[<span class="number">0</span>] * CELL_SIZE + CELL_SIZE // <span class="number">2</span>, pt[<span class="number">1</span>] * CELL_SIZE + CELL_SIZE // <span class="number">2</span>), <span class="number">2</span>)</span><br><span class="line">        pygame.draw.circle(screen, color,</span><br><span class="line">                           (agent.pos[<span class="number">0</span>] * CELL_SIZE + CELL_SIZE // <span class="number">2</span>, agent.pos[<span class="number">1</span>] * CELL_SIZE + CELL_SIZE // <span class="number">2</span>),</span><br><span class="line">                           CELL_SIZE // <span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">    pygame.display.flip() <span class="comment"># 刷新屏幕</span></span><br><span class="line"></span><br><span class="line">pygame.quit() <span class="comment"># 退出游戏</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="运行展示"><a href="#运行展示" class="headerlink" title="运行展示"></a>运行展示</h3><blockquote>
+<p>不得不说，这个，这也太美了吧。。。<br>难以置信，这些全部都是靠涌现出来的。。。</p>
+</blockquote>
+<p><img src="/images/pasted-27.png" alt="upload successful"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line">pygame 2.6.1 (SDL 2.28.4, Python 3.11.0)</span><br><span class="line">Hello from the pygame community. https://www.pygame.org/contribute.html</span><br><span class="line">[Step 100] Plants: 209, Predators: 11</span><br><span class="line">[Step 200] Plants: 223, Predators: 16</span><br><span class="line">[Step 300] Plants: 251, Predators: 23</span><br><span class="line">[Step 400] Plants: 227, Predators: 31</span><br><span class="line">[Step 500] Plants: 185, Predators: 42</span><br><span class="line">[Step 600] Plants: 155, Predators: 45</span><br><span class="line">[Step 700] Plants: 92, Predators: 54</span><br><span class="line">[Step 800] Plants: 73, Predators: 56</span><br><span class="line">[Step 900] Plants: 48, Predators: 59</span><br><span class="line">[Step 1000] Plants: 34, Predators: 57</span><br><span class="line">[Step 1100] Plants: 29, Predators: 56</span><br><span class="line">[Step 1200] Plants: 27, Predators: 50</span><br><span class="line">[Step 1300] Plants: 27, Predators: 47</span><br><span class="line">[Step 1400] Plants: 26, Predators: 35</span><br><span class="line">[Step 1500] Plants: 24, Predators: 28</span><br><span class="line">--- 过捕猎同步紧缩</span><br><span class="line">[Step 1600] Plants: 19, Predators: 20</span><br><span class="line">[Step 1700] Plants: 17, Predators: 14</span><br><span class="line">[Step 1800] Plants: 15, Predators: 12</span><br><span class="line">[Step 1900] Plants: 21, Predators: 8</span><br><span class="line">[Step 2000] Plants: 26, Predators: 7</span><br><span class="line">[Step 2100] Plants: 26, Predators: 3</span><br><span class="line">[Step 2200] Plants: 25, Predators: 3</span><br><span class="line">[Step 2300] Plants: 23, Predators: 2</span><br><span class="line">--- 捕猎者濒临灭绝</span><br><span class="line">[Step 2400] Plants: 21, Predators: 2</span><br><span class="line">[Step 2500] Plants: 27, Predators: 2</span><br><span class="line">[Step 2600] Plants: 54, Predators: 2</span><br><span class="line">[Step 2700] Plants: 75, Predators: 2</span><br><span class="line">[Step 2800] Plants: 77, Predators: 1</span><br><span class="line">[Step 2900] Plants: 77, Predators: 1</span><br><span class="line">[Step 3000] Plants: 70, Predators: 1</span><br><span class="line">[Step 3100] Plants: 62, Predators: 1</span><br><span class="line">[Step 3200] Plants: 65, Predators: 1</span><br><span class="line">[Step 3300] Plants: 135, Predators: 1</span><br><span class="line">[Step 3400] Plants: 226, Predators: 1</span><br><span class="line">--- 植物复苏</span><br><span class="line">[Step 3200] Plants: 65, Predators: 1</span><br><span class="line">[Step 3300] Plants: 135, Predators: 1</span><br><span class="line">[Step 3400] Plants: 226, Predators: 1</span><br><span class="line">[Step 3300] Plants: 135, Predators: 1</span><br><span class="line">[Step 3400] Plants: 226, Predators: 1</span><br><span class="line">[Step 3400] Plants: 226, Predators: 1</span><br><span class="line">[Step 3500] Plants: 259, Predators: 1</span><br><span class="line">[Step 3600] Plants: 258, Predators: 2</span><br><span class="line">[Step 3700] Plants: 243, Predators: 3</span><br><span class="line">[Step 3500] Plants: 259, Predators: 1</span><br><span class="line">[Step 3600] Plants: 258, Predators: 2</span><br><span class="line">[Step 3500] Plants: 259, Predators: 1</span><br><span class="line">[Step 3500] Plants: 259, Predators: 1</span><br><span class="line">[Step 3600] Plants: 258, Predators: 2</span><br><span class="line">[Step 3700] Plants: 243, Predators: 3</span><br><span class="line">[Step 3800] Plants: 198, Predators: 3</span><br><span class="line">[Step 3900] Plants: 180, Predators: 3</span><br><span class="line">[Step 4000] Plants: 290, Predators: 3</span><br><span class="line">[Step 4100] Plants: 391, Predators: 9</span><br><span class="line">[Step 4200] Plants: 371, Predators: 23</span><br><span class="line">[Step 4300] Plants: 244, Predators: 49</span><br><span class="line">[Step 4400] Plants: 69, Predators: 94</span><br><span class="line">--- 捕食者爆发</span><br><span class="line">[Step 4500] Plants: 14, Predators: 103</span><br><span class="line">[Step 4600] Plants: 5, Predators: 102</span><br><span class="line">[Step 4700] Plants: 2, Predators: 95</span><br><span class="line">[Step 4800] Plants: 0, Predators: 81</span><br><span class="line">[Step 4900] Plants: 0, Predators: 53</span><br><span class="line">[Step 5000] Plants: 0, Predators: 37</span><br><span class="line">[Step 5100] Plants: 0, Predators: 21</span><br><span class="line">--- 捕食者灭绝</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/pasted-28.png" alt="upload successful"></p>
+</div>
+        </div>
+        
+            <div class="kratos-copyright text-center clearfix">
+                <h5 itemprop="copyrightNotice">本作品采用 <a rel="license nofollow" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">知识共享署名-相同方式共享 4.0 国际许可协议</a> 进行许可</h5>
+            </div>
+        
+        <footer class="kratos-entry-footer clearfix">
+            
+                <div class="post-like-donate text-center clearfix" id="post-like-donate">
+                
+                    <a class="donate" href="javascript:;"><i class="fa fa-bitcoin"></i> 打赏</a>
+                
+                
+                    <a class="share" href="javascript:;"><i class="fa fa-share-alt"></i> 分享</a>
+                    <div class="share-wrap" style="display: none;">
+    <div class="share-group">
+        <a href="javascript:;" class="share-plain qq" onclick="share('qq');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-qq"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain qzone" onclick="share('qzone');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-star"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weixin pop style-plain" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weixin"></i>
+            </div>
+            <div class="share-int">
+                <div class="qrcode" id="wechat-qr"></div>
+                <p>打开微信“扫一扫”，打开网页后点击屏幕右上角分享按钮</p>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weibo" onclick="share('weibo');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weibo"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain facebook style-plain" onclick="share('facebook');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-facebook"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain twitter style-plain" onclick="share('twitter');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-twitter"></i>
+            </div>
+        </a>
+    </div>
+    <script type="text/javascript">
+        $(()=>{
+            new QRCode("wechat-qr", {
+                text: "http://gannia.top/2025/06/29/AI%E8%BE%85%E5%8A%A9%E5%AE%9E%E7%8E%B0%E7%9A%84%E5%B0%8F%E5%9E%8B%E7%94%9F%E6%80%81%E7%B3%BB%E7%BB%9F/",
+                width: 150,
+                height: 150,
+                correctLevel : QRCode.CorrectLevel.H
+            });
+        });
+        function share(dest) {
+            const qqBase        = "https://connect.qq.com/widget/shareqq/index.html?";
+            const weiboBase     = "https://service.weibo.com/share/share.php?";
+            const qzoneBase     = "https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?";
+            const facebookBase  = "https://www.facebook.com/sharer/sharer.php?";
+            const twitterBase   = "https://twitter.com/intent/tweet?";
+            const hostUrl       = "http://gannia.top/2025/06/29/AI%E8%BE%85%E5%8A%A9%E5%AE%9E%E7%8E%B0%E7%9A%84%E5%B0%8F%E5%9E%8B%E7%94%9F%E6%80%81%E7%B3%BB%E7%BB%9F/";
+            const title         = "「AI辅助实现的小型生态系统」";
+            const excerpt       = `AI辅助实现的小型生态系统
+设计：每个个体都有自己的行为逻辑，并不共享学习到的内容，但克隆体能够继承被克隆个体所学习到的经验，并且每个个体都有小概率获得突变出新的行为逻辑。克隆体，生成在被克隆体的旁边，并继承被克隆体的行为逻辑。
+
+
+...`;
+            let _URL;
+            switch (dest) {
+                case "qq"       : _URL = qqBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";     break;
+                case "weibo"    : _URL = weiboBase+"url="+hostUrl+"&title="+title+excerpt;                                 break;
+                case "qzone"    : _URL = qzoneBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";  break;
+                case "facebook" : _URL = facebookBase+"u="+hostUrl;                                                        break;
+                case "twitter"  : _URL = twitterBase+"text="+title+excerpt+"&url="+hostUrl;                                break;
+            }
+            window.open(_URL);
+        };
+    </script>
+</div>
+                
+                </div>
+            
+            <div class="footer-tag clearfix">
+                <div class="pull-left">
+                <i class="fa fa-tags"></i>
+                    <a class="tag-none-link" href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" rel="tag">人工智能</a>
+                </div>
+                <div class="pull-date">
+                    <time datetime="2025-08-07T18:41:34.000Z" itemprop="dateModified">最后编辑：2025-08-08</time>
+                </div>
+            </div>
+        </footer>
+    </div>
+    
+        <nav class="navigation post-navigation clearfix" role="navigation">
+            
+            <div class="nav-previous clearfix">
+                <a title=" 25/27闲聊 无聊中的仪式感" href="/2025/06/27/25-27随笔-无聊中的仪式感/">&lt; 上一篇</a>
+            </div>
+            
+            
+            <div class="nav-next clearfix">
+                <a title=" 每日/周话题" href="/2025/06/29/每日话题/">下一篇 &gt;</a>
+            </div>
+            
+        </nav>
+    
+    
+        <div id="v-comments" class="post-comments bg-image"></div>
+<script>
+    var load_comm = () => {
+        const init = () => {
+            new Valine({
+                el: '#v-comments',
+                appId: 'T8XpwvdOu85FCBOBqGDFoBr5-gzGzoHsz',
+                appKey: 'Jd2fqhSfAl8XJb2qdLMskVXy',
+                visitor: true,
+                enableQQ: false,
+                path: '/2025/06/29/AI%E8%BE%85%E5%8A%A9%E5%AE%9E%E7%8E%B0%E7%9A%84%E5%B0%8F%E5%9E%8B%E7%94%9F%E6%80%81%E7%B3%BB%E7%BB%9F/'
+            });
+        }
+        if (typeof Valine === 'undefined') {
+            const src = '/vendors/valine@1.4.18/dist/Valine.min.js';
+            $.getScript(src, init);
+        } else {
+            init();
+        }
+    };
+</script>
+<noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="https://valine.js.org/">comments powered by Valine.</a></noscript>
+
+    
+</article>
+
+        
+
+            </section>
+
+        
+
+                
+            
+
+<section id="kratos-widget-area" class="col-md-4 hidden-xs hidden-sm">
+    <!-- 文章和页面根据splitter来分割，没有的话就从头开始设置为sticky -->
+    
+    
+                <aside id="krw-about" class="widget widget-kratos-about clearfix">
+    <div class="photo-background"></div>
+    <div class="photo-wrapper clearfix">
+        <div class="photo-wrapper-tip text-center">
+            <img class="about-photo" src="/images/141054658.jpg" loading="lazy" decoding="auto" />
+        </div>
+    </div>
+    <div class="textwidget">
+        <p class="text-center">A person who is gradually sinking into the abyss, lost and confused, and a person who wants to create their own dream world</p>
+    </div>
+    <div class="site-meta">
+        <a class="meta-item" href="/archives/">
+            <span class="title">
+                文章
+            </span>
+            <span class="count">
+                19
+            </span>
+        </a>
+        <a class="meta-item" href="/categories/">
+            <span class="title">
+                分类
+            </span>
+            <span class="count">
+                9
+            </span>
+        </a>
+        <a class="meta-item" href="/tags/">
+            <span class="title">
+                标签
+            </span>
+            <span class="count">
+                21
+            </span>
+        </a>
+    </div>
+</aside>
+            
+                    <div class="sticky-area">
+                
+                
+  <aside id="krw-categories" class="widget widget-kratos-categories clearfix">
+    <h4 class="widget-title"><i class="fa fa-folder"></i>分类目录</h4>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%A4%A9%E6%96%87/">天文</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%AF%8F%E6%97%A5%E8%AF%9D%E9%A2%98/">每日话题</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%94%9F%E6%B4%BB/">生活</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A4%E7%9F%A5%E6%8E%A2%E7%B4%A2/">认知探索</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%B5%84%E6%BA%90/">资源</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%97%B2%E8%81%8A/">闲聊</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%9A%8F%E7%AC%94/">随笔</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%9F%B3%E4%B9%90/">音乐</a><span class="category-list-count">1</span></li></ul>
+  </aside>
+
+
+            
+                
+  <aside id="krw-tags" class="widget widget-kratos-tags clearfix">
+    <h4 class="widget-title"><i class="fa fa-tags"></i>标签聚合</h4>
+      <div class="tag-clouds">
+        <a href="/tags/2233/" style="font-size: 0.6em;">2233</a> <a href="/tags/AI/" style="font-size: 0.6em;">AI</a> <a href="/tags/Butterfly-%E4%B8%BB%E9%A2%98/" style="font-size: 0.6em;">Butterfly 主题</a> <a href="/tags/Hexo/" style="font-size: 0.6em;">Hexo</a> <a href="/tags/MCP/" style="font-size: 0.6em;">MCP</a> <a href="/tags/fl-studio/" style="font-size: 0.6em;">fl studio</a> <a href="/tags/giscus/" style="font-size: 0.6em;">giscus</a> <a href="/tags/github/" style="font-size: 0.6em;">github</a> <a href="/tags/hexo/" style="font-size: 0.8em;">hexo</a> <a href="/tags/waline/" style="font-size: 0.6em;">waline</a> <a href="/tags/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/" style="font-size: 0.6em;">个人博客</a> <a href="/tags/%E4%B9%90%E7%90%86/" style="font-size: 0.6em;">乐理</a> <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" style="font-size: 0.7em;">人工智能</a> <a href="/tags/%E5%B0%8F%E6%99%BAAI/" style="font-size: 0.6em;">小智AI</a> <a href="/tags/%E6%97%A5%E5%B8%B8/" style="font-size: 0.6em;">日常</a> <a href="/tags/%E6%97%A5%E8%AE%B0/" style="font-size: 0.6em;">日记</a> <a href="/tags/%E6%9C%9B%E8%BF%9C%E9%95%9C/" style="font-size: 0.6em;">望远镜</a> <a href="/tags/%E7%94%9F%E6%B4%BB/" style="font-size: 0.6em;">生活</a>
+      </div>
+  </aside>
+
+            
+                
+  <aside id="krw-posts" class="widget widget-kratos-posts">
+  <h4 class="widget-title"><i class="fa fa-file"></i>最新文章</h4>
+  <div class="tab-content">
+      <ul class="list-group">
+        
+        
+          
+          
+            <a class="list-group-item" href="/2025/08/08/%E4%B8%AA%E4%BA%BA%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%BF%E7%94%A8%E8%A7%82/"><i class="fa  fa-book"></i> 个人计算机使用观</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2025/08/08/%E5%9C%9F%E8%B1%86%E4%BD%ACba%E6%BC%AB%E7%94%BB%E5%AE%8C%E6%95%B4%E8%B5%84%E6%BA%90/"><i class="fa  fa-book"></i> 土豆佬ba漫画日文完整</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2025/07/29/7-29-%E8%AE%A4%E7%9F%A5%E6%8E%A2%E7%B4%A2/"><i class="fa  fa-book"></i> 7/29 认知探索</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2025/07/24/%E5%A4%A9%E6%96%87%E8%AE%B0%E5%BD%95%20%E7%89%9B%E9%A1%BF%E5%8F%8D%E5%B0%84%E5%BC%8F%E6%9C%9B%E8%BF%9C%E9%95%9C/"><i class="fa  fa-book"></i> 天文记录 | 牛顿反射式望远镜</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2025/07/15/%E4%BA%B2%E5%AD%90%E5%85%B3%E7%B3%BB%E4%B8%8E%E8%B4%A3%E4%BB%BB/"><i class="fa  fa-book"></i> 亲子关系与责任</a>
+            
+          
+        
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+      </ul>
+  </div>
+  </aside>
+
+            
+    </div>
+</section>
+        
+        </div>
+    </div>
+</div>
+<footer>
+    <div id="footer"  class="ap-lrc"  >
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3 footer-list text-center">
+                    <ul class="kratos-social-icons">
+                        <!-- Keep for compatibility -->
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <!-- New links -->
+                        
+                    </ul>
+                    <ul class="kratos-copyright">
+                        <div>
+                            <li>&copy; 2025 Tokepson blog's 版权所有.</li>
+                            <li>本站已运行<span id="span_dt">Loading...</span></li>
+                        </div>
+                        <div>
+                            <li>Theme <a href="https://github.com/Candinya/Kratos-Rebirth" target="_blank">Kratos:Rebirth</a></li>
+                            <li>Site built with&nbsp;<i class="fa fa-heart throb" style="color:#d43f57"></i>&nbsp;by tokepson.</li>
+                        </div>
+                        <div>
+                            <li>Powered by <a href="https://hexo.io" target="_blank" rel="nofollow">Hexo</a></li>
+                            <li>Hosted on <a href="https://github.io" target="_blank">Github Pages</a></li>
+                        </div>
+                        <div>
+                            
+                            
+                        </div>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="kr-tool text-center">
+            <div class="tool">
+                
+                    <div class="box search-box">
+                        <a href="/search/">
+                            <span class="fa fa-search"></span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="box theme-box" id="darkmode-switch">
+                        <span class="fa fa-adjust"></span>
+                    </div>
+                
+                
+                    <div class="box theme-box" id="snow-switch">
+                        <span class="fa fa-snowflake-o"></span>
+                    </div>
+                
+                
+            </div>
+            <div class="box gotop-box">
+                <span class="fa fa-chevron-up"></span>
+            </div>
+        </div>
+    </div>
+</footer>
+</div>
+</div>
+
+        <script defer src="/vendors/bootstrap@3.3.4/dist/js/bootstrap.min.js"></script>
+<script defer src="/vendors/nprogress@0.2.0/nprogress.js"></script>
+<script>
+    if (!window.kr) {
+        window.kr = {};
+    }
+    window.kr.notMobile = (!(navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i)));
+    window.kr.siteRoot = "/";
+</script>
+
+    <div>
+        <canvas id="snow"></canvas>
+        <script async src="/js/snow.min.js"></script>
+    </div>
+
+
+    <script async src="/js/candy.min.js"></script>
+
+
+
+    <script defer src="/vendors/aplayer@1.10.1/dist/APlayer.min.js"></script>
+    
+    <script defer src="/vendors/meting@2.0.1/dist/Meting.min.js"></script>
+    <meting-js
+        server="netease"
+        type="playlist"
+        id="3204190542"
+        order="random"
+        fixed="true"
+    >
+    </meting-js>
+
+
+
+    <script defer src="/vendors/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+<script defer src="/js/kratosr.min.js"></script>
+<script defer src="/js/pjax.min.js"></script>
+
+    <script defer src="/vendors/layui-src@2.5.5/dist/layui.all.js"></script>
+
+
+
+<!-- Extra support for third-party plguins  -->
+
+
+
+        
+        <!-- 看板娘 -->
+        <!-- waifu-tips.js 依赖 JQuery 库 -->
+        <script src="/assets/jquery.min.js?v=3.3.1"></script>
+        
+        <!-- 实现拖动效果，需引入 JQuery UI -->
+        <script src="/assets/jquery-ui.min.js"></script>
+
+        <!-- 使用 autoload.js 引入看板娘 -->
+        <script src="/assets/autoload.js?v=1.4.2"></script>
+        <script src="/assets/waifu-tips.js?v=1.4.2"></script>
+        <script src="/assets/live2d.js"></script>
+        
+        <script type="text/javascript">
+            live2d_settings['modelId'] = "3";
+            live2d_settings['modelTexturesId'] = "0";
+            live2d_settings['modelStorage'] = "true";
+            live2d_settings['modelRandMode'] = "switch";
+            live2d_settings['modelTexturesRandMode'] = "rand";
+            live2d_settings['waifuSize'] = "280x250";
+            live2d_settings['waifuEdgeSide'] = "left:1050";
+            live2d_settings['waifuEdgeTop'] = "top:150";
+            live2d_settings['waifuDraggable'] = "axis-x";
+            live2d_settings['waifuDraggableRevert'] = "true";
+            live2d_settings['l2dVersion'] = "1.4.2";
+            live2d_settings['l2dVerDate'] = "2018.11.12";
+            live2d_settings['homePageUrl'] = "";
+            live2d_settings['aboutPageUrl'] = "https://www.fghrsh.net/post/123.html";
+
+            initModel("/assets/waifu-tips.json")
+        </script>
+        
+    </body>
+</html>
